@@ -1,0 +1,6 @@
+node_modules
+#.husky
+.DS_Store
+.env
+config.env
+uploads
