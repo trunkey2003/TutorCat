@@ -1,4 +1,8 @@
+const mongoSanitize = require('express-mongo-sanitize');
 const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -18,7 +22,6 @@ app.use(mongoSanitize());
 const DB = process.env.DATABASE.replace('<USERNAME>', process.env.DATABASE_USERNAME)
     .replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
     .replace('<DB_NAME>', process.env.DATABASE_NAME);
-
 mongoose
     .connect(DB, {
         useUnifiedTopology: true,
