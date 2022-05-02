@@ -1,11 +1,14 @@
 const User = require('../../models/userModel');
-const createError = require('../../common/errors/AppError')
+const {AppError} = require('../../common/errors/AppError')
 const bcrypt = require('bcrypt');
 const  db  = require('../../models/userModel');
 const sendEmail = require('../../common/email/email');
 const resetToken = require('../../models/resetToken');
+const { create } = require('../../models/userModel');
+const jwt = require('jsonwebtoken');
+const uuidv4 = require('uuidv4');
 
-const updateRefreshToken = async (userId, refreshToken) => {
+let updateRefreshToken = async (userId, refreshToken) => {
     try {
         await User.findOneAndUpdate(
             { _id: userId },
@@ -15,40 +18,36 @@ const updateRefreshToken = async (userId, refreshToken) => {
             }
         );
     } catch (error) {
-        throw new createError(error);
+        throw new AppError(error);
     }
 };
 
 module.exports = {
-    signUp: async (body) => {
-        const {name, email , password} = body;
+    signUp: async ({name, email , password}) => {
         try{
-            const identical = await User.findOne({email});
+            let identical = await User.findOne({email});
+            console.log(identical);
             if(identical){
-                throw new createError(400, 'User already existed');
+                throw new AppError(400, "User already existed"); 
             }
-            const salt = await bcrypt.genSalt(10);  
-            const hashPassword = await bcrypt.hash(password, salt);
-            const DB = await User.create({
-                name,
-                email,
-                role,
+            let salt = await bcrypt.genSalt(10);  
+            let hashPassword = await bcrypt.hash(password, salt);
+            let DB = await User.create({
+                name: name,
+                email: email,
                 password: hashPassword
-            });
-            const accessToken = jwt.sign(
+            });    
+            let accessToken = jwt.sign(
                 {
-                    userId: db._id,
-                    email: db.email,
-                    role: db.role
-
+                    userId: DB._id,
+                    email: email, 
                 },process.env.ACCESS_TOKEN_SECRET,{
                     expiresIn: '2h'
                 }
             );
-            const refreshToken = jwt.sign({
-                userId: db._id,
-                email: db.email,
-                role: db.role
+            let refreshToken = jwt.sign({
+                userId: DB._id,
+                email: email,
                 },process.env.REFRESH_TOKEN_SECRET,{
                     expiresIn: '4h'
                 }
@@ -59,19 +58,19 @@ module.exports = {
                 message: 'Account created successfully',
                 token: {
                     accessToken,
-                    refreshToken
+                    refreshToken,
                 }
             }
         } catch (error){
-            throw new createError (500, error.message);
+            throw new AppError (500, error.message);
         }
     },
-    signIn: async ({email, password:Password})=>{
+    signIn: async ({email, password})=>{
         try{
-            const filter = await filter.find({email: email});
-            if(filter.length){
-                if(await bcrypt.compare(Password, filter[0].password)){
-                    const accessToken = jwt.sign(
+            let filter = await User.find({email: email}).select('password');
+                if(filter.length === 1){
+                    if(await bcrypt.compare(password, filter[0].password)){
+                    let accessToken = jwt.sign(
                         {
                             userId: filter[0]._id,
                             email: filter[0].email,
@@ -80,7 +79,7 @@ module.exports = {
                             expiresIn: '2h'
                         }
                     );
-                    const refreshToken = jwt.sign({
+                    let refreshToken = jwt.sign({
                         userId: filter[0]._id,
                         email: filter[0].email,
                         role: filter[0].role,
@@ -98,29 +97,34 @@ module.exports = {
                     }
                 }
                 }else{
-                    throw new createError(404, 'Wrong password');
+                    throw new AppError(404, 'Wrong password');
                 }
             }else{
-                throw new createError(401, "User doesn't exist");
+                throw new AppError(401, "User doesn't exist");
             }
         }catch(error){
-            throw new createError (500, error.message);
+            throw new AppError (500, error.message);
         }
     },
     forgetPassword: async (email) => {
         try{
-            await sendEmail(email,uuidv4());
+            await sendEmail(email,uuidv4);
+            return{
+                statusCode:200,
+                message: "Mail sent successfully"
+            }
+            
         }catch (error){
-            throw new createError(error.message);
+            throw new AppError(error.message);
         }
     },
     resetPassword: async ({userID,resetToken,newPassword}) => {
-        const validToken = await resetToken.findOne({userID,resetToken});
+        let validToken = await resetToken.findOne({userID,resetToken});
         if(!validToken){
-            throw new createError(400, 'Invalid token');
+            throw new AppError(400, 'Invalid token');
         }
-        const salt = await bcrypt.genSalt(10);  
-        const hashPassword = await bcrypt.hash(newPassword, salt);
+        let salt = await bcrypt.genSalt(10);  
+        let hashPassword = await bcrypt.hash(newPassword, salt);
         await User.findOneAndUpdate({_id: userID},{password: hashPassword}, {new: true });
     }
 }

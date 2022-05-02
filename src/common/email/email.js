@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const User = require("../../models/userModel");
-const createError = require('../../common/errors/AppError');
+const {AppError} = require('../../common/errors/AppError');
 const resetTokenM = require('../../models/resetToken');
 async function sendEmail(Email, resetToken) {
     try{
@@ -24,9 +24,10 @@ async function sendEmail(Email, resetToken) {
             text: `Click here to reset your password ..../${resetToken}`,
         };
         await transporter.sendMail(mailOptions);
+        console.log("a");
         let user = await User.findOne({email: Email});
         if(user == 0){
-            throw new createError(404, "User doesn't exist");
+            throw new AppError(404, "User doesn't exist");
         }
         let Token = await new resetTokenM({userId:user._id,resetToken:resetToken});
         await Token.save();
@@ -35,7 +36,7 @@ async function sendEmail(Email, resetToken) {
             message: "Send successfully",
         }
     }catch(error){
-        throw new createError(error.message);
+        throw new AppError(error.message);
     }
 }
 

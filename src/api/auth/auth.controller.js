@@ -21,8 +21,7 @@ module.exports = {
 
     forgetPassword: async (req, res, next) => {
         try {
-            const { email } = req.body;
-            const DTO = await authService.forgetPassword(email);
+            const DTO = await authService.forgetPassword(req.body);
             res.json(DTO);
         } catch (error) {
             next(error);
