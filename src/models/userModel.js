@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     name: {
         type: String,
-        require: [true, 'Please tell us your name!'],
+        required: [true, 'Please tell us your name!'],
     },
     email: {
         type: String,
-        require: [true, 'Please provide your email'],
+        required: [true, 'Please provide your email'],
         unique: true,
         lowercase: true,
         validate: [validator.isEmail, 'Please provide a valid email'],
@@ -21,7 +21,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         minlength: 8,
         select: false,
     },

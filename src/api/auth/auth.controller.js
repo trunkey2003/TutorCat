@@ -13,6 +13,8 @@ module.exports = {
     signIn: async (req,res,next) =>{
         try{
             const DTO = await authService.signIn(req.body);
+            res.cookie('token', DTO.token);
+            delete DTO.token;
             res.status(200).json(DTO);
         }catch(error){
             next(error);
@@ -35,14 +37,17 @@ module.exports = {
             next(error);
         }
     },
-    token: async (req, res, next) => {
+    // testCookie: (req,res,next) => {
+    //     res.cookie("token","hahahaha").status(200);
+    //     next();
+    // },
+    tokenTest: (req,res,next) => {
         try {
-            const DTO = await authService.token(req.body);
-
-            res.status(DTO.statusCode).json(DTO);
+            res.status(200).json({
+                ditmemay: "ditmenay",
+            });
         } catch (error) {
-            next(error);
+            next(error)
         }
-    },
-
+    }
 }

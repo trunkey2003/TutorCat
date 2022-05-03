@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const mongoose = require('mongoose');
 const api = require('./src/api');
-
+const path = require('path')
 dotenv.config({ path: './config.env' });
 
 app.use(cookieParser());
