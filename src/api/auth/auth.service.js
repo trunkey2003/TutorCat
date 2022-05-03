@@ -72,7 +72,7 @@ module.exports = {
             }
             
         }catch (error){
-            throw new AppError(error.message);
+            throw new AppError(500,error.message);
         }
     },
     resetPassword: async ({userID,resetToken,newPassword}) => {
@@ -82,7 +82,47 @@ module.exports = {
         }
         let salt = await bcrypt.genSalt(10);  
         let hashPassword = await bcrypt.hash(newPassword, salt);
-        await User.findOneAndUpdate({_id: userID},{password: hashPassword}, {new: true });
+        await User.findOneAndUpdate({_id: userID},{password: hashPassword,passwordChangedAt: Date.now()}, {new: true });
+    },signOut: async () => {
+        
+    },
+    updatePassword: async (userID, {oldPassword, newPassword}) => { 
+        try{
+            let user = User.findById(userID);
+            if (!(await bcrypt.compare(oldPassword,user.password))){
+                throw new AppError(401, "Wrong old password");
+            }
+            let salt = await bcrypt.genSalt(10);  
+            let hashPassword = await bcrypt.hash(newPassword, salt);
+            user.password = hashPassword;
+            user.passwordChangedAt = Date.now();
+            await user.save();
+            let token = jwt.sign(
+                {
+                    userId: userID,
+                },process.env.JWT_SECRET_KEY,{
+                    expiresIn: '30d'
+                }
+            );
+            return {
+                statusCode: 200,
+                message: "Successfully changed password",
+                token: token
+            }
+        }catch(error){
+            throw new AppError(500, error.message);
+        }
+    },
+    signOut: async (userID) => {
+        try {
+            let token = jwt.sign({userId: userID,},process.env.JWT_SECRET_KEY,{expiresIn: '0h'});
+            return {
+                statusCode: 200,
+                message: "Successfully signed-out",
+                token: token
+            }
+        } catch (error) {
+            throw new AppError(500, error.message);
+        }
     }
-    
 }

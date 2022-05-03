@@ -17,7 +17,7 @@ async function sendEmail(Email, resetToken) {
             },
         });
         const mailOptions = {
-            from: `"Reset Password" <lequockhanhkt03@gmail.com>`,
+            from: `<lequockhanhkt03@gmail.com>`,
             to: Email,
             subject: "Reset password",
             text: `Click here to reset your password ..../${resetToken}`,

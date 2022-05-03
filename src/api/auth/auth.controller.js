@@ -20,11 +20,20 @@ module.exports = {
             next(error);
         }
     },
-
+    signOut: async (req, res, next) => {
+        try{
+            const DTO = await authService.signOut(req.user.id);
+            res.cookie('token', DTO.token);
+            delete DTO.token;
+            res.status(200).json(DTO);
+        } catch(error){
+            next(error);
+        }
+    },
     forgetPassword: async (req, res, next) => {
         try {
             const DTO = await authService.forgetPassword(req.body);
-            res.json(DTO);
+            res.status(200).json(DTO);
         } catch (error) {
             next(error);
         }
@@ -32,7 +41,7 @@ module.exports = {
     resetPassword: async (req, res ,next) => {
         try{
         const DTO = await authService.resetPassword(req.body);
-        res.json(DTO);
+        res.status(200).json(DTO);
         }catch(error){
             next(error);
         }
@@ -48,6 +57,16 @@ module.exports = {
             });
         } catch (error) {
             next(error)
+        }
+    },
+    updatePassword: async (req,res,next) => {
+        try {
+            const DTO = await authService.updatePassword(req.user.id, req.body);
+            res.cookie('token', DTO.token);
+            delete DTO.token;
+            res.status(200).json(DTO);
+        } catch (error) {
+            next(error);
         }
     }
 }

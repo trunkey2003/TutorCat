@@ -5,22 +5,20 @@ exports.verifyToken = async (req, res, next) => {
     try {
         const token = req.cookies.token;
         if (!token) {
-            return res.status(401).json({
-                statusCode: 401,
-                message: 'Unauthorized',
-            });
+            next(new AppError(401, "Token is not valid"));
         }
         const decodeToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        console.log(Date.now());
-        console.log(decodeToken);
         let user = await User.findById(decodeToken.userId);
-        if (user) {
-            req.user = user;
-        } else {
-            next(new AppError(403, "User is not valid"));
+        console.log(user.id);
+        if (!user) {
+            next(new AppError(403, "This token doesn't belong to this user"))
         }
+        if (user.changedPasswordAfter(decodeToken.iat)) {
+            next(new AppError(403, "Password changed"));
+        }
+        req.user=user;
         next();
     } catch (error) {
-        next(new AppError(403, error.message));
+        next(new AppError(500, error.message));
     }
 };

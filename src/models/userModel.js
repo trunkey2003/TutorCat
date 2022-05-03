@@ -29,4 +29,13 @@ const userSchema = new Schema({
     passwordResetToken: String,
     passwordResetExpires: Date,
 });
+
+userSchema.methods.changedPasswordAfter = (JWTTimestamp) => {
+    if (this.passwordChangedAt) {
+        const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
+        return JWTTimestamp < changedTimestamp;
+    }
+    return false;
+};
+
 module.exports = mongoose.model('User', userSchema);
