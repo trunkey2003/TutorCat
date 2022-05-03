@@ -22,10 +22,11 @@ module.exports = {
     },
     signOut: async (req, res, next) => {
         try{
-            const DTO = await authService.signOut(req.user.id);
-            res.cookie('token', DTO.token);
-            delete DTO.token;
-            res.status(200).json(DTO);
+            res.clearCookie("token");
+            res.status(200).json({
+                statusCode: 200,
+                message: "Signed out successfully"
+            });
         } catch(error){
             next(error);
         }

@@ -9,7 +9,7 @@ router.post('/sign-in', authController.signIn);
 
 router.post('/sign-up', authController.signUp);
 
-router.get('/sign-out', verifyToken, authController.signOut);
+router.get('/sign-out', authController.signOut);
 
 router.post('/forget-password', authController.forgetPassword); 
 
@@ -19,5 +19,5 @@ router.post('/update-password', verifyToken, authController.updatePassword);
 
 router.get('/token-test', verifyToken, authController.tokenTest);
 
-// router.get('/getAllUsers',verifyAdmin.authController.getAllUsers)
+// router.get('/getAllUsers', verifyAdmin, authController.getAllUsers)
 module.exports = router;
