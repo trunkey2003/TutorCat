@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const questionSchema = new Schema({
     userID: {
-        type: mongoose.Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         require: true,
     },
@@ -14,6 +14,19 @@ const questionSchema = new Schema({
     },
     content: {
         type: String,
+        require: true,
+    },
+    images: [
+        {
+            _id: false,
+            imageURL: {
+                type: String,
+                require: true,
+            },
+        },
+    ],
+    anonymous: {
+        type: Boolean,
         require: true,
     },
     dateCreated: {
@@ -28,7 +41,7 @@ const questionSchema = new Schema({
         {
             _id: false,
             userID: {
-                type: mongoose.Schema.Types.ObjectId,
+                type: Schema.Types.ObjectId,
                 require: true,
             },
         },
@@ -41,7 +54,7 @@ const questionSchema = new Schema({
         {
             _id: false,
             userID: {
-                type: mongoose.Schema.Types.ObjectId,
+                type: Schema.Types.ObjectId,
                 require: true,
             },
         },

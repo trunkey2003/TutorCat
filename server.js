@@ -7,8 +7,15 @@ const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
 const api = require('./src/api');
+const cloudinary = require('cloudinary');
 
 dotenv.config({ path: './config.env' });
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 app.use(cookieParser());
 app.use(express.json());

@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 
 const replySchema = new Schema({
     userID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         require: true,
     },
     questionID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Question',
         require: true,
     },
@@ -29,7 +29,7 @@ const replySchema = new Schema({
         {
             _id: false,
             userID: {
-                type: mongoose.Schema.Types.ObjectId,
+                type: Schema.Types.ObjectId,
                 require: true,
             },
         },
@@ -42,7 +42,7 @@ const replySchema = new Schema({
         {
             _id: false,
             userID: {
-                type: mongoose.Schema.Types.ObjectId,
+                type: Schema.Types.ObjectId,
                 require: true,
             },
         },
