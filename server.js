@@ -6,9 +6,13 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
+const mongoose = require('mongoose');
 const api = require('./src/api');
 const cloudinary = require('cloudinary');
 
+const path = require('path');
 dotenv.config({ path: './config.env' });
 
 cloudinary.config({
