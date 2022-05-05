@@ -1,5 +1,4 @@
 const { AppError } = require('../../common/errors/AppError');
-const upload = require('../../common/uploadFile/uploadFile');
 const Question = require('../../models/questionModel');
 
 const Reply = require('../../models/replyModel');
@@ -17,7 +16,7 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    addQuestion: async (imageUrl, userID, body) => {
+    addQuestion: async (imageUrls, userID, body) => {
         try {
             let { title, content, anonymous } = body;
             const question = new Question({
@@ -25,9 +24,10 @@ module.exports = {
                 title,
                 content,
                 anonymous,
+                images: imageUrls,
             });
-
             await question.save();
+            // console.log(question);
             return {
                 statusCode: 200,
                 message: 'Add question successfully',
@@ -38,7 +38,7 @@ module.exports = {
     },
     getQuestionWithID: async (id) => {
         try {
-            let question = await Question.findById({ id });
+            let question = await Question.findById(id);
             return {
                 statusCode: 200,
                 message: `Get question ${id} detailed successfully`,
@@ -60,8 +60,10 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    deleteQuestion: async (id) => {
+    deleteQuestion: async (userID, id) => {
         try {
+            let question = await Question.findById(id);
+            if (question.userID.toString() !== userID) throw new AppError(409, 'Conflict userID');
             await Question.deleteOne({ id });
             return {
                 statusCode: 200,
@@ -71,10 +73,12 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    modifyQuestion: async (id, body) => {
+    modifyQuestion: async (userID, id, body) => {
         try {
             let { title, content } = body;
-            let question = Question.findById(id);
+            // console.log(body);
+            let question = await Question.findById(id);
+            if (question.userID.toString() !== userID.toString()) throw new AppError(409, 'Conflict userID');
             if (title) {
                 question.title = title;
             }
@@ -92,7 +96,7 @@ module.exports = {
     },
     upVoteQuestion: async (userID, questionID) => {
         try {
-            let question = Question.findById(questionID);
+            let question = await Question.findById(questionID);
             let userUpVote = question.userUpVote.filter((item) => {
                 return item.userID.toString() === userID.toString();
             });
@@ -120,6 +124,7 @@ module.exports = {
                 res = 'removed';
             }
             await question.save();
+            console.log(question);
             return {
                 statusCode: 200,
                 message: `Question with id ${questionID} ${res} 1 up vote successfully`,
@@ -262,6 +267,22 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Reply with id ${replyID} ${res} 1 down vote successfully`,
+            };
+        } catch (error) {
+            throw new AppError(500, error.message);
+        }
+    },
+    addReply: async (userID, questionID, { content }) => {
+        try {
+            let reply = new Reply({
+                userID,
+                questionID,
+                content,
+            });
+            await reply.save();
+            return {
+                statusCode: 200,
+                message: `Created reply successfully`,
             };
         } catch (error) {
             throw new AppError(500, error.message);

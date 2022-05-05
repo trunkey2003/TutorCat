@@ -19,7 +19,7 @@ const questionSchema = new Schema({
     images: [
         {
             _id: false,
-            imageURL: {
+            imageUrl: {
                 type: String,
                 require: true,
             },
@@ -28,6 +28,7 @@ const questionSchema = new Schema({
     anonymous: {
         type: Boolean,
         require: true,
+        default: false,
     },
     dateCreated: {
         type: Date,
@@ -37,15 +38,17 @@ const questionSchema = new Schema({
         type: Number,
         default: 0,
     },
-    userUpVote: [
-        {
-            _id: false,
-            userID: {
-                type: Schema.Types.ObjectId,
-                require: true,
+    userUpVote: {
+        type: [
+            {
+                _id: false,
+                userID: {
+                    type: Schema.Types.ObjectId,
+                    require: true,
+                },
             },
-        },
-    ],
+        ],
+    },
     numDownVote: {
         type: Number,
         default: 0,
