@@ -16,15 +16,16 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    addQuestion: async (imageUrls, userID, body) => {
+    addQuestion: async (images, userID, body) => {
         try {
-            let { title, content, anonymous } = body;
+            let { title, content, anonymous, categories } = body;
             const question = new Question({
                 userID,
                 title,
                 content,
                 anonymous,
-                images: imageUrls,
+                categories,
+                images,
             });
             await question.save();
             // console.log(question);
@@ -36,7 +37,7 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    getQuestionWithID: async (id) => {
+    getQuestionWithID: async (replyID) => {
         try {
             let question = await Question.findById(id);
             return {
@@ -75,15 +76,21 @@ module.exports = {
     },
     modifyQuestion: async (userID, id, body) => {
         try {
-            let { title, content } = body;
+            let { title, content, categories } = body;
             // console.log(body);
             let question = await Question.findById(id);
             if (question.userID.toString() !== userID.toString()) throw new AppError(409, 'Conflict userID');
             if (title) {
                 question.title = title;
+                question.isChanged = 1;
             }
             if (content) {
                 question.content = content;
+                question.isChanged = 1;
+            }
+            if (categories) {
+                question.categories = categories;
+                question.isChanged = 1;
             }
             await question.save();
             return {
@@ -185,8 +192,10 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    deleteReply: async (replyID) => {
+    deleteReply: async (userID, replyID) => {
         try {
+            let question = await Question.findById(userID);
+            if (question.userID.toString() !== userID.toString()) throw new AppError(409, 'Conflict userID');
             await Reply.deleteOne({ id: replyID });
             return {
                 statusCode: 200,
@@ -283,6 +292,49 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Created reply successfully`,
+            };
+        } catch (error) {
+            throw new AppError(500, error.message);
+        }
+    },
+    modifyReply: async (userID, replyID, body) => {
+        try {
+            let { content } = body;
+            // console.log(body);
+            let reply = await Reply.findById(replyID);
+            if (reply.userID.toString() !== userID.toString()) throw new AppError(409, 'Conflict userID');
+            if (content) {
+                reply.content = content;
+                reply.isChanged = 1;
+            }
+            await reply.save();
+            return {
+                statusCode: 200,
+                message: 'Modify reply successfully',
+            };
+        } catch (error) {
+            throw new AppError(500, error.message);
+        }
+    },
+    getCatalogue: async () => {
+        try {
+            let catalogue = await Question.find().distinct(categories.category);
+            return {
+                statusCode: 200,
+                message: 'Modify reply successfully',
+                data: catalogue,
+            };
+        } catch (error) {
+            throw new AppError(500, error.message);
+        }
+    },
+    getQuestionWithCategory: async (category) => {
+        try {
+            let question = await Question.find({ 'categories.category': category });
+            return {
+                statusCode: 200,
+                message: 'Modify reply successfully',
+                data: question,
             };
         } catch (error) {
             throw new AppError(500, error.message);

@@ -93,7 +93,7 @@ module.exports = {
     },
     deleteReply: async (req, res, next) => {
         try {
-            let DTO = await questionService.deleteReply(req.params.id);
+            let DTO = await questionService.deleteReply(req.user.id, req.params.id);
             res.status(200).json(DTO);
         } catch (error) {
             next(error);
@@ -118,6 +118,30 @@ module.exports = {
     addReply: async (req, res, next) => {
         try {
             let DTO = await questionService.addReply(req.user.id, req.params.id, req.body);
+            res.status(200).json(DTO);
+        } catch (error) {
+            next(error);
+        }
+    },
+    modifyReply: async (req, res, next) => {
+        try {
+            let DTO = await questionService.modifyReply(req.user.id, req.params.id, req.body);
+            res.status(200).json(DTO);
+        } catch (error) {
+            next(error);
+        }
+    },
+    getCatalogue: async (req, res, next) => {
+        try {
+            let DTO = await questionService.getCatalogue();
+            res.status(200).json(DTO);
+        } catch (error) {
+            next(error);
+        }
+    },
+    getQuestionWithCategory: async (req, res, next) => {
+        try {
+            let DTO = await questionService.getQuestionWithCategory(req.params.category);
             res.status(200).json(DTO);
         } catch (error) {
             next(error);

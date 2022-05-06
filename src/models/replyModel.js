@@ -6,12 +6,12 @@ const replySchema = new Schema({
     userID: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        require: true,
+        required: true,
     },
     questionID: {
         type: Schema.Types.ObjectId,
         ref: 'Question',
-        require: true,
+        required: true,
     },
     dateCreated: {
         type: Date,
@@ -19,7 +19,7 @@ const replySchema = new Schema({
     },
     content: {
         type: String,
-        require: true,
+        required: true,
     },
     numUpVote: {
         type: Number,
@@ -30,7 +30,7 @@ const replySchema = new Schema({
             _id: false,
             userID: {
                 type: Schema.Types.ObjectId,
-                require: true,
+                required: true,
             },
         },
     ],
@@ -43,10 +43,15 @@ const replySchema = new Schema({
             _id: false,
             userID: {
                 type: Schema.Types.ObjectId,
-                require: true,
+                required: true,
             },
         },
     ],
+    isChanged: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 });
 
 module.exports = mongoose.model('Reply', replySchema);

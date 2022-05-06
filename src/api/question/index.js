@@ -13,8 +13,10 @@ router.post('/:id/up-vote', verifyToken, questionController.upVoteQuestion);
 router.post('/:id/down-vote', verifyToken, questionController.downVoteQuestion);
 router.get('/:id/reply', questionController.getAllReply);
 router.post('/:id/reply/add', verifyToken, questionController.addReply);
-router.post('/:id/reply/delete', verifyToken, questionController.deleteReply);
+router.delete('/:id/reply/delete', verifyToken, questionController.deleteReply);
+router.patch('/reply/:id/modify', verifyToken, questionController.modifyReply);
 router.post('/reply/:id/up-vote', verifyToken, questionController.upVoteReply);
 router.post('/reply/:id/down-vote', verifyToken, questionController.downVoteReply);
-
+router.get('/catalogue', questionController.getCatalogue);
+router.get('/:category', questionController.getQuestionWithCategory);
 module.exports = router;

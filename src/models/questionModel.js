@@ -6,28 +6,37 @@ const questionSchema = new Schema({
     userID: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        require: true,
+        required: true,
     },
+    categories: [
+        {
+            _id: false,
+            category: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
     title: {
         type: String,
-        require: true,
+        required: true,
     },
     content: {
         type: String,
-        require: true,
+        required: true,
     },
     images: [
         {
             _id: false,
             imageUrl: {
                 type: String,
-                require: true,
+                required: true,
             },
         },
     ],
     anonymous: {
         type: Boolean,
-        require: true,
+        required: true,
         default: false,
     },
     dateCreated: {
@@ -44,7 +53,7 @@ const questionSchema = new Schema({
                 _id: false,
                 userID: {
                     type: Schema.Types.ObjectId,
-                    require: true,
+                    required: true,
                 },
             },
         ],
@@ -58,10 +67,15 @@ const questionSchema = new Schema({
             _id: false,
             userID: {
                 type: Schema.Types.ObjectId,
-                require: true,
+                required: true,
             },
         },
     ],
+    isChanged: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 });
 
 module.exports = mongoose.model('Question', questionSchema);
