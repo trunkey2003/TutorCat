@@ -2,6 +2,20 @@ const { AppError } = require('../../common/errors/AppError');
 const questionService = require('./question.service');
 // const upload = require('../../common/uploadCloudinary/uploadCloudinary');
 module.exports = {
+    uploadImage: async (req, res, next) => {
+        try {
+            if (req.file) {
+                res.status(200).json({
+                    statusCode: 200,
+                    message: 'Uploaded successfully',
+                    data: req.file.path,
+                });
+            }
+            next(new AppError(500, 'Upload failed'));
+        } catch (error) {
+            next(error);
+        }
+    },
     getAllQuestion: async (req, res, next) => {
         try {
             let DTO = await questionService.getAllQuestion();
@@ -12,22 +26,7 @@ module.exports = {
     },
     addQuestion: async (req, res, next) => {
         try {
-            let imageUrls = new Array(0);
-            if (req.files) {
-                if (req.files.length <= 10 && req.files.length > 0) {
-                    // multipleImagePromise = await upload(req.files);
-                    // imageUrls = (await Promise.all(multipleImagePromise)).map((item) => {
-                    //     return { imageUrl: item.secure_url };
-                    // });
-                    imageUrls = req.files.map((item) => {
-                        return { imageUrl: item.path };
-                    });
-                } else if (req.files.length > 10) {
-                    next(new AppError(500, 'Too many files to upload.'));
-                }
-            }
-            console.log(imageUrls);
-            let DTO = await questionService.addQuestion(imageUrls, req.user.id, req.body);
+            let DTO = await questionService.addQuestion(req.user.id, req.body);
             res.status(200).json(DTO);
         } catch (error) {
             console.log(error);
@@ -101,7 +100,7 @@ module.exports = {
     },
     upVoteReply: async (req, res, next) => {
         try {
-            let DTO = await questionService.upVoteReply(req.params.id);
+            let DTO = await questionService.upVoteReply(req.user.id, req.params.id);
             res.status(200).json(DTO);
         } catch (error) {
             next(error);
@@ -109,7 +108,7 @@ module.exports = {
     },
     downVoteReply: async (req, res, next) => {
         try {
-            let DTO = await questionService.downVoteReply(req.params.id);
+            let DTO = await questionService.downVoteReply(req.user.id, req.params.id);
             res.status(200).json(DTO);
         } catch (error) {
             next(error);

@@ -53,6 +53,6 @@ var uploadFiles = multer({
     storage,
     limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
     fileFilter: fileFilter,
-}).array('photos', 10);
+}).single('photo');
 var uploadFilesMiddleware = promisify(uploadFiles);
 module.exports = uploadFilesMiddleware;

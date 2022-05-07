@@ -8,15 +8,18 @@ const questionSchema = new Schema({
         ref: 'User',
         required: true,
     },
-    categories: [
-        {
-            _id: false,
-            category: {
-                type: String,
-                required: true,
+    categories: {
+        type: [
+            {
+                _id: false,
+                category: {
+                    type: String,
+                    required: true,
+                },
             },
-        },
-    ],
+        ],
+        required: true,
+    },
     title: {
         type: String,
         required: true,
@@ -25,15 +28,15 @@ const questionSchema = new Schema({
         type: String,
         required: true,
     },
-    images: [
-        {
-            _id: false,
-            imageUrl: {
-                type: String,
-                required: true,
-            },
-        },
-    ],
+    // images: [
+    //     {
+    //         _id: false,
+    //         imageUrl: {
+    //             type: String,
+    //             required: true,
+    //         },
+    //     },
+    // ],
     anonymous: {
         type: Boolean,
         required: true,

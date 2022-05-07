@@ -6,7 +6,7 @@ const Reply = require('../../models/replyModel');
 module.exports = {
     getAllQuestion: async () => {
         try {
-            let question = await Question.find();
+            let question = await Question.find().populate('userID');
             return {
                 statusCode: 200,
                 message: 'Get all question successfully',
@@ -16,19 +16,18 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    addQuestion: async (images, userID, body) => {
+    addQuestion: async (userID, body) => {
         try {
             let { title, content, anonymous, categories } = body;
+            console.log(categories);
             const question = new Question({
                 userID,
                 title,
                 content,
                 anonymous,
                 categories,
-                images,
             });
             await question.save();
-            // console.log(question);
             return {
                 statusCode: 200,
                 message: 'Add question successfully',
@@ -37,9 +36,9 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    getQuestionWithID: async (replyID) => {
+    getQuestionWithID: async (id) => {
         try {
-            let question = await Question.findById(id);
+            let question = await Question.findById(id).populate('userID', 'name');
             return {
                 statusCode: 200,
                 message: `Get question ${id} detailed successfully`,
@@ -51,7 +50,7 @@ module.exports = {
     },
     getQuestionWithUserID: async (userID) => {
         try {
-            let question = await Question.find({ userID });
+            let question = await Question.find({ userID }).populate('userID');
             return {
                 statusCode: 200,
                 message: `Get questions with user ID: ${userID} successfully`,
@@ -108,7 +107,7 @@ module.exports = {
                 return item.userID.toString() === userID.toString();
             });
             let res = '';
-            if (!userUpVote.length) {
+            if (!userUpVote) {
                 question.numUpVote++;
                 question.userUpVote.push({
                     userID: userID,
@@ -116,7 +115,7 @@ module.exports = {
                 let userDownVote = question.userDownVote.filter((item) => {
                     return item.userID.toString() === userID.toString();
                 });
-                if (userDownVote.length) {
+                if (userDownVote) {
                     question.numDownVote--;
                     question.userDownVote = question.userDownVote.filter((item) => {
                         return item.userID.toString() !== userID.toString();
@@ -147,7 +146,7 @@ module.exports = {
                 return item.userID.toString() === userID.toString();
             });
             let res = '';
-            if (!userDownVote.length) {
+            if (!userDownVote) {
                 question.numDownVote++;
                 question.userDownVote.push({
                     userID: userID,
@@ -155,7 +154,7 @@ module.exports = {
                 let userUpVote = question.userUpVote.filter((item) => {
                     return item.userID.toString() === userID.toString();
                 });
-                if (userUpVote.length) {
+                if (userUpVote) {
                     question.numUpVote--;
                     question.userUpVote = question.userUpVote.filter((item) => {
                         return item.userID.toString() !== userID.toString();
@@ -243,7 +242,7 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    downVoteQuestion: async (userID, replyID) => {
+    downVoteReply: async (userID, replyID) => {
         try {
             let reply = await Reply.findById(replyID);
             let userDownVote = reply.userDownVote.filter((item) => {
@@ -318,7 +317,7 @@ module.exports = {
     },
     getCatalogue: async () => {
         try {
-            let catalogue = await Question.find().distinct(categories.category);
+            let catalogue = await Question.find().distinct('categories.category');
             return {
                 statusCode: 200,
                 message: 'Modify reply successfully',
