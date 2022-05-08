@@ -19,7 +19,12 @@ cloudinary.config({
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(cors());
+const corsConfig = {
+    credentials: true,
+    origin: true,
+};
+
+app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 
 // Data sanitization against NoSQL query injection
