@@ -18,13 +18,13 @@ module.exports = {
     },
     addQuestion: async (userID, body) => {
         try {
-            let { title, content, anonymous, categories } = body;
+            let { title, content, categories } = body;
             console.log(categories);
             const question = new Question({
                 userID,
                 title,
                 content,
-                anonymous,
+                // anonymous,
                 categories,
             });
             await question.save();

@@ -37,11 +37,11 @@ const questionSchema = new Schema({
     //         },
     //     },
     // ],
-    anonymous: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
+    // anonymous: {
+    //     type: Boolean,
+    //     required: true,
+    //     default: false,
+    // },
     dateCreated: {
         type: Date,
         default: Date.now,
