@@ -15,7 +15,7 @@ module.exports = {
             const DTO = await authService.signIn(req.body);
             res.cookie('token', DTO.token, {
                 sameSite: 'none',
-                secure: false,
+                secure: true,
                 httpOnly: true,
                 maxAge: 3600000 * 24,
             });
