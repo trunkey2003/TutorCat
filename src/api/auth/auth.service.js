@@ -1,10 +1,7 @@
 const User = require('../../models/userModel');
 const { AppError } = require('../../common/errors/AppError');
 const bcrypt = require('bcrypt');
-const db = require('../../models/userModel');
 const sendEmail = require('../../common/email/email');
-// const resetToken = require('../../models/resetToken');
-const { create } = require('../../models/userModel');
 const jwt = require('jsonwebtoken');
 const uuidv4 = require('uuidv4');
 
@@ -14,7 +11,7 @@ module.exports = {
             let identical = await User.findOne({ email });
             console.log(identical);
             if (identical) {
-                throw new AppError(400, 'User already existed');
+                throw new AppError(403, 'User already existed');
             }
             let salt = await bcrypt.genSalt(10);
             let hashPassword = await bcrypt.hash(password, salt);
@@ -51,10 +48,10 @@ module.exports = {
                         token: token,
                     };
                 } else {
-                    throw new AppError(404, 'Wrong password');
+                    throw new AppError(403, 'Wrong password');
                 }
             } else {
-                throw new AppError(401, "User doesn't exist");
+                throw new AppError(404, 'User not found');
             }
         } catch (error) {
             throw new AppError(500, error.message);
@@ -75,7 +72,7 @@ module.exports = {
             throw new AppError(500, error.message);
         }
     },
-    resetPassword: async ({ userID, resetToken, newPassword }) => {
+    resetPassword: async ({ userId, resetToken, newPassword }) => {
         let validToken = await User.findOne({ passwordResetToken: resetToken });
         if (!validToken) {
             throw new AppError(400, 'Invalid token');
@@ -83,16 +80,17 @@ module.exports = {
         let salt = await bcrypt.genSalt(10);
         let hashPassword = await bcrypt.hash(newPassword, salt);
         await User.findOneAndUpdate(
-            { _id: userID },
+            { _id: userId },
             { password: hashPassword, passwordChangedAt: Date.now() },
             { new: true },
         );
     },
+
     updatePassword: async (user, { oldPassword, newPassword }) => {
         try {
             let info = await User.findById(user.id).select('password');
             if (!(await bcrypt.compare(oldPassword, info.password))) {
-                throw new AppError(401, 'Wrong old password');
+                throw new AppError(403, 'Wrong old password');
             }
             let salt = await bcrypt.genSalt(10);
             let hashPassword = await bcrypt.hash(newPassword, salt);
