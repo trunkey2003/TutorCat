@@ -31,6 +31,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: 'Add question successfully',
+                data: question.id,
             };
         } catch (error) {
             throw new AppError(500, error.message);
