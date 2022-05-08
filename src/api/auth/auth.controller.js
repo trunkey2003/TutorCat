@@ -52,19 +52,6 @@ module.exports = {
             next(error);
         }
     },
-    // testCookie: (req,res,next) => {
-    //     res.cookie("token","hahahaha").status(200);
-    //     next();
-    // },
-    // tokenTest: (req,res,next) => {
-    //     try {
-    //         res.status(200).json({
-    //             ditmemay: "ditmenay",
-    //         });
-    //     } catch (error) {
-    //         next(error)
-    //     }
-    // },
     updatePassword: async (req, res, next) => {
         try {
             const DTO = await authService.updatePassword(req.user.id, req.body);

@@ -5,9 +5,9 @@ const { verifyToken } = require('../../middleware/verifyToken');
 
 router.post('/upload', upload, questionController.uploadImage);
 router.get('/', questionController.getAllQuestion);
-router.get('/detail/:id', questionController.getQuestionWithID);
+router.get('/:id/detail', questionController.getQuestionWithID);
 router.get('/user/', verifyToken, questionController.getQuestionWithUserID);
-router.post('/add', verifyToken, upload, questionController.addQuestion);
+router.post('/add', verifyToken, questionController.addQuestion);
 router.delete('/:id/delete', verifyToken, questionController.deleteQuestion);
 router.patch('/:id/modify', verifyToken, questionController.modifyQuestion);
 router.post('/:id/up-vote', verifyToken, questionController.upVoteQuestion);

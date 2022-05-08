@@ -88,21 +88,20 @@ module.exports = {
             { new: true },
         );
     },
-    signOut: async () => {},
-    updatePassword: async (userID, { oldPassword, newPassword }) => {
+    updatePassword: async (user, { oldPassword, newPassword }) => {
         try {
-            let user = User.findById(userID);
-            if (!(await bcrypt.compare(oldPassword, user.password))) {
+            let info = await User.findById(user.id).select('password');
+            if (!(await bcrypt.compare(oldPassword, info.password))) {
                 throw new AppError(401, 'Wrong old password');
             }
             let salt = await bcrypt.genSalt(10);
             let hashPassword = await bcrypt.hash(newPassword, salt);
-            user.password = hashPassword;
-            user.passwordChangedAt = Date.now();
-            await user.save();
+            info.password = hashPassword;
+            info.passwordChangedAt = Date.now();
+            await info.save();
             let token = jwt.sign(
                 {
-                    userId: userID,
+                    userId: info.id,
                 },
                 process.env.JWT_SECRET_KEY,
                 {
@@ -112,18 +111,6 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: 'Successfully changed password',
-                token: token,
-            };
-        } catch (error) {
-            throw new AppError(500, error.message);
-        }
-    },
-    signOut: async (userID) => {
-        try {
-            let token = jwt.sign({ userId: userID }, process.env.JWT_SECRET_KEY, { expiresIn: '0h' });
-            return {
-                statusCode: 200,
-                message: 'Successfully signed-out',
                 token: token,
             };
         } catch (error) {

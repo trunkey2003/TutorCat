@@ -6,7 +6,7 @@ const Reply = require('../../models/replyModel');
 module.exports = {
     getAllQuestion: async () => {
         try {
-            let question = await Question.find().populate('userID');
+            let question = await Question.find().populate('userID', 'name');
             return {
                 statusCode: 200,
                 message: 'Get all question successfully',
@@ -50,7 +50,7 @@ module.exports = {
     },
     getQuestionWithUserID: async (userID) => {
         try {
-            let question = await Question.find({ userID }).populate('userID');
+            let question = await Question.find({ userID }).populate('userID', 'name');
             return {
                 statusCode: 200,
                 message: `Get questions with user ID: ${userID} successfully`,

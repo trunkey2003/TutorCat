@@ -8,7 +8,7 @@ exports.verifyToken = async (req, res, next) => {
             next(new AppError(401, 'Token is not valid'));
         }
         const decodeToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        console.log(decodeToken);
+        // console.log(decodeToken);
         let user = await User.findById(decodeToken.userId);
         if (!user) {
             next(new AppError(403, "This token doesn't belong to this user"));
