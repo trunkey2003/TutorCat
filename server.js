@@ -21,11 +21,10 @@ app.use(express.json());
 
 const corsConfig = {
     credentials: true,
-    origin: '*',
+    origin: true,
 };
 
 app.use(cors(corsConfig));
-app.options('*', cors());
 app.use(express.urlencoded({ extended: true }));
 
 // Data sanitization against NoSQL query injection
