@@ -135,6 +135,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Question with id ${questionID} ${res} 1 up vote successfully`,
+                data: question.numUpVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
@@ -173,6 +174,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Question with id ${questionID} ${res} 1 down vote successfully`,
+                data: question.numDownVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
@@ -238,6 +240,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Reply with id ${replyID} ${res} 1 up vote successfully`,
+                data: reply.numUpVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
@@ -276,6 +279,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Reply with id ${replyID} ${res} 1 down vote successfully`,
+                data: reply.numDownVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
