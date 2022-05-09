@@ -40,12 +40,6 @@ mongoose
     })
     .then(() => console.log('DB connection successful!'));
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-    console.log(`App running on port ${port}...`);
-});
-
 app.use('/api', api);
 
 app.use((req, res) => {
@@ -62,3 +56,5 @@ app.use((error, req, res, next) => {
         message,
     });
 });
+
+module.exports = app;
