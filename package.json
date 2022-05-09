@@ -1,0 +1,57 @@
+{
+  "name": "hackathon2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "lint-staged": {
+    "*.{js}": "prettier --config .prettierrc.json server.js \"src/**/*.js\" --write"
+  },
+  "scripts": {
+    "lint": "lint-staged --allow-empty",
+    "husky-prepare": "husky install",
+    "dev": "nodemon ./bin/server",
+    "start": "node ./bin/server",
+    "pret": "prettier --config .prettierrc.json server.js \"src/**/*.js\" --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tr1ggerbug/hackathon2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tr1ggerbug/hackathon2022/issues"
+  },
+  "homepage": "https://github.com/tr1ggerbug/hackathon2022#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.28.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "http": "^0.0.1-security",
+    "husky": "^7.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.7",
+    "multer": "^1.4.4",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "socket.io": "^4.5.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3",
+    "uuidv4": "^6.2.13",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "lint-staged": "^12.2.0",
+    "prettier": "^2.5.1"
+  }
+}
