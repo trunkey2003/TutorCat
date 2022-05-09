@@ -108,7 +108,7 @@ module.exports = {
                 return item.userID.toString() === userID.toString();
             });
             let res = '';
-            if (!userUpVote) {
+            if (!userUpVote.length) {
                 question.numUpVote++;
                 question.userUpVote.push({
                     userID: userID,
@@ -116,7 +116,7 @@ module.exports = {
                 let userDownVote = question.userDownVote.filter((item) => {
                     return item.userID.toString() === userID.toString();
                 });
-                if (userDownVote) {
+                if (userDownVote.length) {
                     question.numDownVote--;
                     question.userDownVote = question.userDownVote.filter((item) => {
                         return item.userID.toString() !== userID.toString();
@@ -147,7 +147,7 @@ module.exports = {
                 return item.userID.toString() === userID.toString();
             });
             let res = '';
-            if (!userDownVote) {
+            if (!userDownVote.length) {
                 question.numDownVote++;
                 question.userDownVote.push({
                     userID: userID,
@@ -155,7 +155,7 @@ module.exports = {
                 let userUpVote = question.userUpVote.filter((item) => {
                     return item.userID.toString() === userID.toString();
                 });
-                if (userUpVote) {
+                if (userUpVote.length) {
                     question.numUpVote--;
                     question.userUpVote = question.userUpVote.filter((item) => {
                         return item.userID.toString() !== userID.toString();
@@ -212,7 +212,7 @@ module.exports = {
                 return item.userID.toString() === userID.toString();
             });
             let res = '';
-            if (!userUpVote.size()) {
+            if (!userUpVote.length) {
                 reply.numUpVote++;
                 reply.userUpVote.push({
                     userID: userID,
@@ -220,7 +220,7 @@ module.exports = {
                 let userDownVote = reply.userDownVote.filter((item) => {
                     return item.userID.toString() === userID.toString();
                 });
-                if (userDownVote.size()) {
+                if (userDownVote.length) {
                     reply.numDownVote--;
                     reply.userDownVote = reply.userDownVote.filter((item) => {
                         return item.userID.toString() !== userID.toString();
@@ -250,7 +250,7 @@ module.exports = {
                 return item.userID.toString() === userID.toString();
             });
             let res = '';
-            if (!userDownVote) {
+            if (!userDownVote.length) {
                 reply.numDownVote++;
                 reply.userDownVote.push({
                     userID: userID,
@@ -258,7 +258,7 @@ module.exports = {
                 let userUpVote = reply.userUpVote.filter((item) => {
                     return item.userID.toString() === userID.toString();
                 });
-                if (userUpVote) {
+                if (userUpVote.length) {
                     reply.numUpVote--;
                     reply.userUpVote = reply.userUpVote.filter((item) => {
                         return item.userID.toString() !== userID.toString();

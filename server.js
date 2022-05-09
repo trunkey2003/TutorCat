@@ -27,7 +27,6 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 
-// Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
 const DB = process.env.DATABASE.replace('<USERNAME>', process.env.DATABASE_USERNAME)
