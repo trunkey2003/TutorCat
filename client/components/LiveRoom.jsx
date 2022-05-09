@@ -17,7 +17,7 @@ import OutputCodeFromMe from "./OutputCodeFromMe";
 import OutputCodeFromRemote from "./OutputCodeFromRemote";
 import HostLeft from "./HostLeft";
 
-// const socket = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/room`);
+const socket = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/room`);
 var created;
 
 export default function LiveRoom({ roomID }) {
@@ -54,104 +54,104 @@ export default function LiveRoom({ roomID }) {
   const remoteVideo = useRef();
   const alertsRef = useRef([]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   socket.on("me", (socketID) => {
-  //     Axios.put(`/api/room/join/${roomID}/${socketID}`)
-  //       .then(({ data }) => {
-  //         setMyName(data.userName1);
-  //         created = data.userCount == 1 ? false : true;
-  //         if (!created) {
-  //           handleCreateRoom();
-  //         } else {
-  //           handleJoinRoom(socketID);
-  //           handleAddChatBreak("You have joined room");
-  //         }
-  //         setLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         setError("404");
-  //         setLoading(false);
-  //       });
-  //   });
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    socket.on("me", (socketID) => {
+      Axios.put(`/api/room/join/${roomID}/${socketID}`)
+        .then(({ data }) => {
+          setMyName(data.userName1);
+          created = data.userCount == 1 ? false : true;
+          if (!created) {
+            handleCreateRoom();
+          } else {
+            handleJoinRoom(socketID);
+            handleAddChatBreak("You have joined room");
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError("404");
+          setLoading(false);
+        });
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   socket.on("remote turned webcam off", () => {
-  //     setRemoteCallScreenOff(true);
-  //     handleRemoteCallScreen(null);
-  //   });
+  useEffect(() => {
+    socket.on("remote turned webcam off", () => {
+      setRemoteCallScreenOff(true);
+      handleRemoteCallScreen(null);
+    });
 
-  //   socket.on("remote turned webcam on", () => {
-  //     setRemoteCallScreenOff(false);
-  //   });
+    socket.on("remote turned webcam on", () => {
+      setRemoteCallScreenOff(false);
+    });
 
-  //   socket.on("remote started sharing screen", () => {
-  //     setRemoteCallScreenOff(false);
-  //     handleAddChatBreak("Remote started sharing screen");
-  //   });
+    socket.on("remote started sharing screen", () => {
+      setRemoteCallScreenOff(false);
+      handleAddChatBreak("Remote started sharing screen");
+    });
 
-  //   socket.on("remote stoped sharing screen", () => {
-  //     setRemoteCallScreenOff(true);
-  //     handleRemoteCallScreen(null);
-  //     handleAddChatBreak("Remote stoped sharing screen");
-  //   });
+    socket.on("remote stoped sharing screen", () => {
+      setRemoteCallScreenOff(true);
+      handleRemoteCallScreen(null);
+      handleAddChatBreak("Remote stoped sharing screen");
+    });
 
-  //   socket.on("remote started sharing audio", () => {
-  //     console.log("remote started sharing audio");
-  //     setRemoteShareAudio(true);
-  //   });
+    socket.on("remote started sharing audio", () => {
+      console.log("remote started sharing audio");
+      setRemoteShareAudio(true);
+    });
 
-  //   socket.on("remote stoped sharing audio", () => {
-  //     console.log("remote stoped share audio");
-  //     setRemoteShareAudio(false);
-  //   });
-  // }, [messages]);
+    socket.on("remote stoped sharing audio", () => {
+      console.log("remote stoped share audio");
+      setRemoteShareAudio(false);
+    });
+  }, [messages]);
 
-  // useEffect(() => {
-  //   if (classChatBox == "show-chat-box" && unreadMessages > 0) {
-  //     setUnreadMessages(0);
-  //   }
-  // }, [classChatBox]);
+  useEffect(() => {
+    if (classChatBox == "show-chat-box" && unreadMessages > 0) {
+      setUnreadMessages(0);
+    }
+  }, [classChatBox]);
 
-  // useEffect(() => {
-  //   if (!created) {
-  //     socket.on("remote join room", (id) => {
-  //       setRemoteSocketID(id);
-  //       myMediaConnection.current = myPeer.current.call("joiner-" + roomID, myCallStream.current);
-  //       myMediaConnection.current?.on("stream", (stream) => {
-  //         //4/5/2022 Khong biet tai sao co luc myMediaConnection.currunt lai la undefined o day
-  //         //7/5/2022 Co ve la do socket chưa dc re-render khi bỏ trong useEffect với []
-  //         handleRemoteCallScreen(stream);
-  //       });
-  //       setRemoteCallScreenOff(true);
-  //       handleAddAlert("New attendance !", id + " has joined your room");
-  //     });
+  useEffect(() => {
+    if (!created) {
+      socket.on("remote join room", (id) => {
+        setRemoteSocketID(id);
+        myMediaConnection.current = myPeer.current.call("joiner-" + roomID, myCallStream.current);
+        myMediaConnection.current?.on("stream", (stream) => {
+          //4/5/2022 Khong biet tai sao co luc myMediaConnection.currunt lai la undefined o day
+          //7/5/2022 Co ve la do socket chưa dc re-render khi bỏ trong useEffect với []
+          handleRemoteCallScreen(stream);
+        });
+        setRemoteCallScreenOff(true);
+        handleAddAlert("New attendance !", id + " has joined your room");
+      });
 
-  //     socket.on("remote leave call", () => {
-  //       myMediaConnection.current?.close();
-  //       myMediaConnection.current = null;
-  //       setRemoteCallScreenOff(null);
-  //       handleAddAlert("Attendance left !", remoteSocketID + " has left your room");
-  //       setRemoteSocketID(null);
-  //     });
-  //   }
+      socket.on("remote leave call", () => {
+        myMediaConnection.current?.close();
+        myMediaConnection.current = null;
+        setRemoteCallScreenOff(null);
+        handleAddAlert("Attendance left !", remoteSocketID + " has left your room");
+        setRemoteSocketID(null);
+      });
+    }
 
-  //   socket.on("remote chatted", (message) => {
-  //     handleAddChatFromRemote(message);
-  //     handleRemoteNewMessage();
-  //   });
+    socket.on("remote chatted", (message) => {
+      handleAddChatFromRemote(message);
+      handleRemoteNewMessage();
+    });
 
-  //   socket.on("remote sent code", (message) => {
-  //     handleAddCodeFromRemote(message);
-  //     handleRemoteNewMessage();
-  //   });
+    socket.on("remote sent code", (message) => {
+      handleAddCodeFromRemote(message);
+      handleRemoteNewMessage();
+    });
 
-  //   socket.on("new chat break", (content) => {
-  //     handleAddChatBreak(content);
-  //   });
-  //   // return () => socket.disconnect();
-  // }, [alerts, messages, remoteSocketID, unreadMessages, classChatBox, socket]);
+    socket.on("new chat break", (content) => {
+      handleAddChatBreak(content);
+    });
+    // return () => socket.disconnect();
+  }, [alerts, messages, remoteSocketID, unreadMessages, classChatBox, socket]);
 
   const handleRemoteNewMessage = useCallback(() => {
     console.log(messages);
