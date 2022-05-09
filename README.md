@@ -31,5 +31,5 @@ Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
 - Qua yarn: ``yarn start``
 
 Khuyến khích sử dụng npm run dev thay vì build rồi start ở cả 2 files client và server để tránh lỗi  
-Giám khảo có thể lấy browse được thực hiện trước 20h 09/05/2022 vì những thay đổi sau 20h là không quan trọng : 
+Giám khảo có thể browse code được thực hiện trước 20h 09/05/2022 vì những thay đổi sau 20h là không quan trọng : 
 https://github.com/trunkey2003/tutorcat/tree/c9fa1b497fe4d3e12505015a9a0b35f07317403f commit lúc 7:56 PM
