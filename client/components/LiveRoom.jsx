@@ -17,7 +17,7 @@ import OutputCodeFromMe from "./OutputCodeFromMe";
 import OutputCodeFromRemote from "./OutputCodeFromRemote";
 import HostLeft from "./HostLeft";
 
-const socket = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/room`);
+// const socket = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/room`);
 var created;
 
 export default function LiveRoom({ roomID }) {
@@ -54,104 +54,104 @@ export default function LiveRoom({ roomID }) {
   const remoteVideo = useRef();
   const alertsRef = useRef([]);
 
-  useEffect(() => {
-    setLoading(true);
-    socket.on("me", (socketID) => {
-      Axios.put(`/api/room/join/${roomID}/${socketID}`)
-        .then(({ data }) => {
-          setMyName(data.userName1);
-          created = data.userCount == 1 ? false : true;
-          if (!created) {
-            handleCreateRoom();
-          } else {
-            handleJoinRoom(socketID);
-            handleAddChatBreak("You have joined room");
-          }
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError("404");
-          setLoading(false);
-        });
-    });
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   socket.on("me", (socketID) => {
+  //     Axios.put(`/api/room/join/${roomID}/${socketID}`)
+  //       .then(({ data }) => {
+  //         setMyName(data.userName1);
+  //         created = data.userCount == 1 ? false : true;
+  //         if (!created) {
+  //           handleCreateRoom();
+  //         } else {
+  //           handleJoinRoom(socketID);
+  //           handleAddChatBreak("You have joined room");
+  //         }
+  //         setLoading(false);
+  //       })
+  //       .catch((err) => {
+  //         setError("404");
+  //         setLoading(false);
+  //       });
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    socket.on("remote turned webcam off", () => {
-      setRemoteCallScreenOff(true);
-      handleRemoteCallScreen(null);
-    });
+  // useEffect(() => {
+  //   socket.on("remote turned webcam off", () => {
+  //     setRemoteCallScreenOff(true);
+  //     handleRemoteCallScreen(null);
+  //   });
 
-    socket.on("remote turned webcam on", () => {
-      setRemoteCallScreenOff(false);
-    });
+  //   socket.on("remote turned webcam on", () => {
+  //     setRemoteCallScreenOff(false);
+  //   });
 
-    socket.on("remote started sharing screen", () => {
-      setRemoteCallScreenOff(false);
-      handleAddChatBreak("Remote started sharing screen");
-    });
+  //   socket.on("remote started sharing screen", () => {
+  //     setRemoteCallScreenOff(false);
+  //     handleAddChatBreak("Remote started sharing screen");
+  //   });
 
-    socket.on("remote stoped sharing screen", () => {
-      setRemoteCallScreenOff(true);
-      handleRemoteCallScreen(null);
-      handleAddChatBreak("Remote stoped sharing screen");
-    });
+  //   socket.on("remote stoped sharing screen", () => {
+  //     setRemoteCallScreenOff(true);
+  //     handleRemoteCallScreen(null);
+  //     handleAddChatBreak("Remote stoped sharing screen");
+  //   });
 
-    socket.on("remote started sharing audio", () => {
-      console.log("remote started sharing audio");
-      setRemoteShareAudio(true);
-    });
+  //   socket.on("remote started sharing audio", () => {
+  //     console.log("remote started sharing audio");
+  //     setRemoteShareAudio(true);
+  //   });
 
-    socket.on("remote stoped sharing audio", () => {
-      console.log("remote stoped share audio");
-      setRemoteShareAudio(false);
-    });
-  }, [messages]);
+  //   socket.on("remote stoped sharing audio", () => {
+  //     console.log("remote stoped share audio");
+  //     setRemoteShareAudio(false);
+  //   });
+  // }, [messages]);
 
-  useEffect(() => {
-    if (classChatBox == "show-chat-box" && unreadMessages > 0) {
-      setUnreadMessages(0);
-    }
-  }, [classChatBox]);
+  // useEffect(() => {
+  //   if (classChatBox == "show-chat-box" && unreadMessages > 0) {
+  //     setUnreadMessages(0);
+  //   }
+  // }, [classChatBox]);
 
-  useEffect(() => {
-    if (!created) {
-      socket.on("remote join room", (id) => {
-        setRemoteSocketID(id);
-        myMediaConnection.current = myPeer.current.call("joiner-" + roomID, myCallStream.current);
-        myMediaConnection.current?.on("stream", (stream) => {
-          //4/5/2022 Khong biet tai sao co luc myMediaConnection.currunt lai la undefined o day
-          //7/5/2022 Co ve la do socket chưa dc re-render khi bỏ trong useEffect với []
-          handleRemoteCallScreen(stream);
-        });
-        setRemoteCallScreenOff(true);
-        handleAddAlert("New attendance !", id + " has joined your room");
-      });
+  // useEffect(() => {
+  //   if (!created) {
+  //     socket.on("remote join room", (id) => {
+  //       setRemoteSocketID(id);
+  //       myMediaConnection.current = myPeer.current.call("joiner-" + roomID, myCallStream.current);
+  //       myMediaConnection.current?.on("stream", (stream) => {
+  //         //4/5/2022 Khong biet tai sao co luc myMediaConnection.currunt lai la undefined o day
+  //         //7/5/2022 Co ve la do socket chưa dc re-render khi bỏ trong useEffect với []
+  //         handleRemoteCallScreen(stream);
+  //       });
+  //       setRemoteCallScreenOff(true);
+  //       handleAddAlert("New attendance !", id + " has joined your room");
+  //     });
 
-      socket.on("remote leave call", () => {
-        myMediaConnection.current?.close();
-        myMediaConnection.current = null;
-        setRemoteCallScreenOff(null);
-        handleAddAlert("Attendance left !", remoteSocketID + " has left your room");
-        setRemoteSocketID(null);
-      });
-    }
+  //     socket.on("remote leave call", () => {
+  //       myMediaConnection.current?.close();
+  //       myMediaConnection.current = null;
+  //       setRemoteCallScreenOff(null);
+  //       handleAddAlert("Attendance left !", remoteSocketID + " has left your room");
+  //       setRemoteSocketID(null);
+  //     });
+  //   }
 
-    socket.on("remote chatted", (message) => {
-      handleAddChatFromRemote(message);
-      handleRemoteNewMessage();
-    });
+  //   socket.on("remote chatted", (message) => {
+  //     handleAddChatFromRemote(message);
+  //     handleRemoteNewMessage();
+  //   });
 
-    socket.on("remote sent code", (message) => {
-      handleAddCodeFromRemote(message);
-      handleRemoteNewMessage();
-    });
+  //   socket.on("remote sent code", (message) => {
+  //     handleAddCodeFromRemote(message);
+  //     handleRemoteNewMessage();
+  //   });
 
-    socket.on("new chat break", (content) => {
-      handleAddChatBreak(content);
-    });
-    // return () => socket.disconnect();
-  }, [alerts, messages, remoteSocketID, unreadMessages, classChatBox, socket]);
+  //   socket.on("new chat break", (content) => {
+  //     handleAddChatBreak(content);
+  //   });
+  //   // return () => socket.disconnect();
+  // }, [alerts, messages, remoteSocketID, unreadMessages, classChatBox, socket]);
 
   const handleRemoteNewMessage = useCallback(() => {
     console.log(messages);
@@ -737,9 +737,9 @@ export default function LiveRoom({ roomID }) {
   const MyCallScreenState = () => {
     if (myCallScreenOff == true)
       return (
-        <div className="z-10 absolute top-0 left-0 w-[320px] h-[180px] bg-black object-cover border-2 border-sky-900 text-white flex justify-center items-center text-2xl">
+        <div className="hidden lg:flex z-10 fixed lg:absolute bottom-[20vh] left-0 lg:top-0 lg:left-0 w-[320px] h-[180px] bg-black object-cover border-2 border-sky-900 text-white flex justify-center items-center text-2xl">
           Your camera is off
-          <div className="absolute top-0 left-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-black opacity-50">
+          <div className="fixed lg:absolute bottom-[20vh] left-0 lg:top-0 lg:left-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-black opacity-50">
             {shareAudio ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -762,7 +762,7 @@ export default function LiveRoom({ roomID }) {
       );
     else {
       return (
-        <div className="absolute top-0 left-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
+        <div className="hidden lg:flex fixed lg:absolute bottom-[20vh] left-0 lg:top-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
           {shareAudio ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -788,7 +788,7 @@ export default function LiveRoom({ roomID }) {
   const RemoteCallScreenState = () => {
     if (remoteCallScreenOff == true)
       return (
-        <div className="fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] bg-black object-cover border-2 border-sky-900 z-10 text-white flex justify-center items-center text-2xl">
+        <div className="hidden lg:flex fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] bg-black object-cover border-2 border-sky-900 z-10 text-white flex justify-center items-center text-2xl">
           Remote camera is off
           <div className="absolute top-0 left-0 h-6 w-6 m-2 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
             {remoteShareAudio ? (
@@ -813,7 +813,7 @@ export default function LiveRoom({ roomID }) {
       );
     if (remoteCallScreenOff == null && !created)
       return (
-        <div className="fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] animate-pulse bg-gray-700 text-blue-300 object-cover border-2 border-sky-900 z-10 text-black flex justify-center items-center text-2xl">
+        <div className="hidden lg:flex fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] animate-pulse bg-gray-700 text-blue-300 object-cover border-2 border-sky-900 z-10 text-black flex justify-center items-center text-2xl">
           Waiting another user to join...
         </div>
       );
@@ -889,7 +889,7 @@ export default function LiveRoom({ roomID }) {
 
       <div
         onClick={handleClassChatBox}
-        className={`fixed bottom-[330px] flex justify-center items-center w-[40px] h-[60px] bg-sky-900 z-[1001] rounded-r-xl ${classChatToogle} hover:cursor-pointer hover:opacity-80`}
+        className={`hidden lg:flex fixed bottom-[330px] justify-center items-center w-[40px] h-[60px] bg-sky-900 z-[1001] rounded-r-xl ${classChatToogle} hover:cursor-pointer hover:opacity-80`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -907,7 +907,7 @@ export default function LiveRoom({ roomID }) {
 
       {
         <div
-          className={`fixed left-0 bottom-10 h-[350px] bg-gray-900 bg-opacity-70 z-[1000] ${classChatBox} overflow-hidden`}
+          className={`hidden lg:block fixed left-0 bottom-10 h-[350px] bg-gray-900 bg-opacity-70 z-[1000] ${classChatBox} overflow-hidden`}
         >
           {
             <div className="p-4 max-h-[310px] overflow-x-auto">
@@ -962,7 +962,7 @@ export default function LiveRoom({ roomID }) {
       <div className="bg-black w-full min-h-screen">
         <video
           ref={remoteVideo}
-          className="fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] bg-gray-300 object-cover border-2 border-sky-900"
+          className="fixed top-[10vh] left-[calc(50%-160px)] lg:left-[10vw] lg:top-[2vw] w-[320px] lg:w-[80vw] h-[180px] lg:h-[45vw] bg-gray-300 object-cover border-2 border-sky-900"
         ></video>
         <RemoteCallScreenState />
         <Draggable
@@ -973,7 +973,7 @@ export default function LiveRoom({ roomID }) {
             bottom: 20,
           }}
         >
-          <div className="z-30 absolute bottom-[15px] right-[15px] cursor-move">
+          <div className="z-30 right-[calc(50%-160px)] absolute bottom-[20vh] lg:bottom-[15px] lg:right-[15px] cursor-move">
             <video
               ref={myVideo}
               className="z-30 w-[320px] h-[180px] border-2 border-blue-900 bg-blue-100 object-cover"
@@ -981,7 +981,7 @@ export default function LiveRoom({ roomID }) {
             <MyCallScreenState />
           </div>
         </Draggable>
-        <div className="fixed z-40 flex items-center justify-center w-[33.33333vw] left-[33.333333vw] bottom-[20px]">
+        <div className="fixed z-40 flex items-center justify-center w-full lg:w-[33.33333vw] lg:left-[33.333333vw] bottom-[20px]">
           {sharingScreen ? <StopShareScreenButton /> : <StartShareScreenButton />}
           {shareAudio ? <MuteButton /> : <UnmuteButton />}
           {shareCam ? <StopShareWebcamButton /> : <StartShareWebcamButton />}
