@@ -8,7 +8,7 @@ Dự án tham gia cuộc thi WebDev Adventure 2022 - UIT do Meowmeow team thực
 - ... [Đang phát triển]
 
 ## Công nghệ
-Team sử dụng Nodejs, Next.js cùng với bộ giao diện TailwindCSS
+Team sử dụng Nodejs, Next.js cùng một số thư viện khác
 
 ## Cài đặt
 ### Đối với Front-end
