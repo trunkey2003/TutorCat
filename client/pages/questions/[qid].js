@@ -37,10 +37,10 @@ export async function getStaticPaths() {
             return data
         })
         .catch(() => {
-            return null
+            return []
         }
         )
-    const paths = data?.map(question => ({
+    const paths = data.map(question => ({
         params: { qid: question._id },
     }));
     return {
