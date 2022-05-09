@@ -56,8 +56,8 @@ const Detail = ({ detail, voteIndex, time, id, user, question }) => {
                         <Quill2Html detail={detail} />
                     </div>
                     <div className="flex flex-nowrap gap-3 items-center my-3">
-                        <div class="avatar">
-                            <div class="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="avatar">
+                            <div className="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 <img src={`https://ui-avatars.com/api/?name=${user.name}`} />
                             </div>
                         </div>
@@ -70,7 +70,7 @@ const Detail = ({ detail, voteIndex, time, id, user, question }) => {
                         </div>
                     </div>
                     <div className="grid grid-flow-col gap-0">
-                        <div class="flex flex-nowrap gap-2">
+                        <div className="flex flex-nowrap gap-2">
                             <a className="text-primary text-sm m-pointer"><IntlMessages id="questions.share" /></a>
                             <a className="text-primary text-sm m-pointer"><IntlMessages id="questions.edit" /></a>
                         </div>

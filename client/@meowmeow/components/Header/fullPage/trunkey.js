@@ -12,7 +12,7 @@ export default function Header({ children }) {
     return (
         <div className="drawer">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col bg-white">
+            <div className="drawer-content flex flex-col bg-sky-100">
                 {/* Navbar */}
                 <div className="w-full navbar bg-slate-100 navbar-custom drop-shadow p-0">
                     <div className="flex-none md:hidden">
@@ -22,7 +22,7 @@ export default function Header({ children }) {
                     </div>
                     <div className="flex-1 p-1">
                         <Link href="/">
-                            <a className="text-xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary pl-5"><IntlMessages id="config.projectName" /></a>
+                            <a className="text-2xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary pl-5"><IntlMessages id="config.projectName" /></a>
                         </Link>
                         <div className="flex hidden md:block lg:block xl:block justify-start ml-5">
                             <MenuSecond />
@@ -35,7 +35,7 @@ export default function Header({ children }) {
                         {authUser ? <ProfileGroup /> : <>
                             <div onClick={() => window.location.href = window.location.origin + "/account/signin"}>
                                 <label className={
-                                    (-1 != router.pathname.search("/account/signin")) ? "hidden" : "btn btn-sm btn-primary"
+                                    (-1 != router.pathname.search("/account/signin")) ? "hidden" : "btn btn-sm btn-primary mr-1"
                                 }>
                                     <IntlMessages id="signin.btnSignin" />
                                 </label>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../../../authentication/index'
 import toast from 'react-hot-toast'
 import IntlMessages from '../../../utils/IntlMessages'
-import {httpClient} from '../../../modules/apiService/config'
+import {Axios} from '../../../modules/apiService/config'
 
 const Vote = ({ questionId, voteIndex, question }) => {
     console.log(questionId)
@@ -12,7 +12,7 @@ const Vote = ({ questionId, voteIndex, question }) => {
     const upVote = async () => {
         if (authUser){
             if (question) {
-                let res = await httpClient
+                let res = await Axios
                     .post(`/question/${questionId}/up-vote/`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
@@ -24,7 +24,7 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     }
                     )
             } else {
-                let res = await httpClient
+                let res = await Axios
                     .post(`/question/${questionId}/reply/up-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
@@ -44,7 +44,7 @@ const Vote = ({ questionId, voteIndex, question }) => {
     const downVote = async () => {
         if (authUser){
             if (question) {
-                let res = await httpClient
+                let res = await Axios
                     .post(`/question/${questionId}/down-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
@@ -56,7 +56,7 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     }
                     )
             } else {
-                let res = await httpClient
+                let res = await Axios
                     .post(`/question/${questionId}/reply/down-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)

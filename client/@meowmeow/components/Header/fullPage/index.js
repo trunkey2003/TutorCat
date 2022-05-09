@@ -21,9 +21,9 @@ export default function Header({ children }) {
                         </label>
                     </div>
                     <div className="flex-1 p-1">
-                        <Link href="/">
-                            <a className="text-xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary pl-5"><IntlMessages id="config.projectName" /></a>
-                        </Link>
+                        <a href="/">
+                            <a className="text-2xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary pl-5"><IntlMessages id="config.projectName" /></a>
+                        </a>
                         <div className="flex hidden md:block lg:block xl:block justify-start ml-5">
                             <MenuSecond />
                         </div>

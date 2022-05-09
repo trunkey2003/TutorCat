@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
-import { httpClient } from '../../modules/apiService/config'
+import { Axios } from '../../modules/apiService/config'
 import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css';
 import IntlMessages from '../../utils/IntlMessages'
@@ -87,7 +87,7 @@ class MyComponent extends React.Component {
                 { "category": tag.value }
             )) : []
         }
-        httpClient
+        Axios
             .post('/question/add/', question, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ class MyComponent extends React.Component {
                 { "category": tag.value }
             )) : []
         }
-        httpClient
+        Axios
             .post('/question/add/', question, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -148,7 +148,7 @@ class MyComponent extends React.Component {
             // Move cursor to right side of image (easier to continue typing)
             this.quill.setSelection(range.index + 1);
 
-            const res = await httpClient
+            const res = await Axios
                 .post('/question/upload', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'

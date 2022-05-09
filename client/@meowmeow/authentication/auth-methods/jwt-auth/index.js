@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { httpClient } from '../../../modules/apiService/config'
+import { Axios } from '../../../modules/apiService/config'
 import toast from 'react-hot-toast'
 import { useSelector, useDispatch } from "react-redux";
 import { setUser, deleteUser } from "../../../redux/actions/user";
@@ -64,7 +64,7 @@ export const useProvideAuth = () => {
   const userLogin = (user, callbackFun) => {
     fetchStart();
     console.log(user)
-    httpClient
+    Axios
       .post('/auth/sign-in/', user)
       .then(({ data }) => {
         if (data.statusCode == "200") {
@@ -87,7 +87,7 @@ export const useProvideAuth = () => {
 
   const userSignup = (user) => {
     fetchStart();
-    httpClient
+    Axios
       .post('/auth/sign-up/', user)
       .then(({ data }) => {
         fetchSuccess();
@@ -125,7 +125,7 @@ export const useProvideAuth = () => {
   const renderSocialMediaLogin = () => null;
 
   const userSignOut = () => {
-    httpClient
+    Axios
       .get('/auth/sign-out/')
       .then(() => {
         setAuthUser(false)
@@ -138,7 +138,7 @@ export const useProvideAuth = () => {
   };
 
   const getInfo = () => {
-    httpClient
+    Axios
       .get('/user/get-info')
       .then(({ data }) => {
         if (data.statusCode == "200") {
@@ -154,7 +154,7 @@ export const useProvideAuth = () => {
       .catch(function (error) {
         setAuthUser(false)
         setLoadingAuthUser(true)
-        toast.error(error.message)
+        // toast.error(error.message)
       });
   };
 
@@ -162,8 +162,8 @@ export const useProvideAuth = () => {
   const changeInfo = (user, callbackFun) => {
     fetchStart();
     const token = localStorage.getItem('token');
-    httpClient.defaults.headers.common['Authorization'] = token;
-    httpClient
+    Axios.defaults.headers.common['Authorization'] = token;
+    Axios
       .post('/change_user_info', user, axiosConfig)
       .then(({ data }) => {
 
@@ -188,7 +188,7 @@ export const useProvideAuth = () => {
 
   const getAuthUser = () => {
     fetchStart();
-    httpClient
+    Axios
       .post('/check_token', axiosConfig)
       .then(({ data }) => {
         if ((data.status) == "0") {
@@ -203,7 +203,7 @@ export const useProvideAuth = () => {
         }
       })
       .catch(function (error) {
-        httpClient.defaults.headers.common['Authorization'] = '';
+        Axios.defaults.headers.common['Authorization'] = '';
         fetchError(error.message);
       });
   };

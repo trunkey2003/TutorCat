@@ -21,7 +21,7 @@ export default function Login() {
             </Head>
             <Auth>
                 <div className="container h-full w-full mr-0">
-                    <div class="flex justify-center items-center py-20 p-3">
+                    <div className="flex justify-center items-center py-20 p-3">
                         <div className="w-full lg:w-4/12 mt-0">
                             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-0">
                                 <div className="flex-auto px-4 lg:px-10 py-10 pt-3">
@@ -36,7 +36,7 @@ export default function Login() {
                                                 className="block mb-2"
                                                 htmlFor="grid-password"
                                             >
-                                                <IntlMessages id="profile.username" />
+                                                <IntlMessages id="profile.email" />
                                             </label>
                                             <input
                                                 type="email"
@@ -96,13 +96,11 @@ export default function Login() {
                                     </a>
                                 </div>
                                 <div className="w-1/2 text-right">
-                                    <Link href="/Auth/register">
-                                        <a href="#pablo" >
-                                            <small>
-                                                <IntlMessages id="signin.newAccount" />
-                                            </small>
-                                        </a>
-                                    </Link>
+                                    <a href="/account/signup">
+                                        <small>
+                                            <IntlMessages id="signin.newAccount" />
+                                        </small>
+                                    </a>
                                 </div>
                             </div>
                         </div>

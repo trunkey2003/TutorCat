@@ -5,7 +5,7 @@ export default function Auth({ children }) {
   return (
     <>
       <main>
-        <Header>
+      <Header>
             {children}
       </Header>
     </main>

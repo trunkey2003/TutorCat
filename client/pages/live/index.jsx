@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Axios } from "../../config/axios";
 import { io } from "socket.io-client";
 import Box from "@mui/material/Box";
@@ -33,8 +33,11 @@ export default function Index() {
   const [loading, setLoading] = useState(false);
   const [rooms, setRooms] = useState([]);
 
+  const socket = useRef();
+
   useEffect(() => {
     setLoading(true);
+    socket.current = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/live`);
     Axios.get("/api/room/get")
       .then(({ data }) => {
         setRooms(data);
@@ -44,18 +47,11 @@ export default function Index() {
         //dev
         if (roomID) setLoading(false);
       });
-    socket.on("myID", (myID) => {
+    socket.current.on("myID", (myID) => {
       setRoomID(myID);
       setLoading(false);
     });
-  }, [roomID]);
-
-  useEffect(() => {
-    // mỗi lần server kêu update room sẽ call api room lại
-    // Các hành động sẽ update room :
-    // - Tạo và tham gia phòng (chỉ tạo sẽ ko update)
-    // - Ngắt kết nối với phòng
-    socket.on("update room", () => {
+    socket.current.on("update room", () => {
       console.log("update room");
       Axios.get("/api/room/get").then(({ data }) => {
         setRooms(data);
@@ -169,8 +165,8 @@ export default function Index() {
 
   return (
     <AuthLayout>
-    <div className="bg-sky-100 relative z-[-10]">
-      <div className="md:mx-[15%] flex flex-wrap justify-center">
+    <div className="bg-sky-100">
+      <div className="md:mx-[15%] flex flex-wrap justify-center relative">
         <div className="bg-sky-500 w-60 h-72 m-8 rounded-lg ">
           <div className="bg-white w-60 h-72 hover:m-0 absolute rounded-lg shadow-lg hover:shadow-2xl transition-all duration-150 ease-out hover:ease-in ">
             <h1 className="m-4 text-2xl font-bold flex items-center">

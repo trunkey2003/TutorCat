@@ -8,7 +8,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const api = require('./src/api');
 const cloudinary = require('cloudinary').v2;
-dotenv.config({ path: './config.env' });
+dotenv.config();
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

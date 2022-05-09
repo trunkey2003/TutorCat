@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const httpClient = axios.create({
-  baseURL: `https://hackathon2022webbe.herokuapp.com/api/`, //API_URL HERE
+export const Axios = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/`,
   headers: {
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH',
     'Access-Control-Allow-Credentials': true,

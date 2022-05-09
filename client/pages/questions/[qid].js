@@ -3,7 +3,7 @@ import PageLoader from '../../@meowmeow/components/PageComponents/PageLoader'
 import dynamic from 'next/dynamic';
 import QuestionDetail from '../../@meowmeow/components/QuestionDetail'
 import { getQuesByQuesId, getAllQues } from '../../@meowmeow/modules/apiService/index'
-import { httpClient } from '../../@meowmeow/modules/apiService/config'
+import { Axios } from '../../@meowmeow/modules/apiService/config'
 import Error from 'next/error'
 import Head from 'next/head'
 import IntlMessages from '../../@meowmeow/utils/IntlMessages';
@@ -30,7 +30,7 @@ const questionDetailPage = ({ qDetail, qReply }) => {
 }
 
 export async function getStaticPaths() {
-    let data = await httpClient
+    let data = await Axios
         .get(`/question/`)
         .then(res => {
             let data = res.data.data
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    let data = await httpClient
+    let data = await Axios
         .get(`/question/`)
         .then(res => {
             let data = res.data.data
@@ -61,7 +61,7 @@ export async function getStaticProps({ params }) {
         }
         )
     let qDetail = data.find(question => question._id === params.qid);
-    let qReply = await httpClient
+    let qReply = await Axios
         .get(`/question/${params.qid}/reply/`)
         .then(res => {
             let data = res.data.data

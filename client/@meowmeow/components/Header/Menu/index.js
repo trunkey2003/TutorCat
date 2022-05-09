@@ -6,22 +6,25 @@ import IntlMessages from '../../../utils/IntlMessages';
 const MenuSecond = (props) => {
     const router = useRouter();
     return (
-        <ul className="menu menu-vertical md:menu-horizontal menu-compact text-gray ">
-            {
-                NavMenu.map((row, index) => (
-                    <li key={index}>
-                        <Link href={row.link}>
-                            <a className={
-                                (-1 != router.pathname.search(row.link))?"bordered":""
-                            }>
-                                {row.name}
-                            </a>
-                        </Link>
-                    </li>
-                ))
-            }
+        // <ul className="menu menu-vertical md:menu-horizontal menu-compact text-gray ">
+        //     {
+        //         NavMenu.map((row, index) => (
+        //             <li key={index}>
+        //                 <Link href={row.link}>
+        //                     <a className={
+        //                         (-1 != router.pathname.search(row.link))?"bordered":""
+        //                     }>
+        //                         {row.name}
+        //                     </a>
+        //                 </Link>
+        //             </li>
+        //         ))
+        //     }
 
-        </ul>
+        // </ul>
+        <a href="/live" className="ml-5 font-bold">
+            Live Tutor
+        </a>
     );
 }
 

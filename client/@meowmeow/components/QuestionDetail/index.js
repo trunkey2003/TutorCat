@@ -11,7 +11,7 @@ function QuestionDetail(props) {
     // const [qDetail, setQDetail] = useState()
     // const questionId = getQid()
     // useEffect(() => {
-    //     httpClient
+    //     Axios
     //         .get(`/question/${questionId}/detail`)
     //         .then(({ data }) => {
     //             setQDetail(data.data)

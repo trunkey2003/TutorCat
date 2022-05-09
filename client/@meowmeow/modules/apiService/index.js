@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { httpClient } from './config'
+import { Axios } from './config'
 import toast from 'react-hot-toast'
 
 const newPost = async (question, callbackFun) => {
-  await httpClient
+  await Axios
     .post('/question/add/', question)
     .then(({ data }) => {
       if (data.statusCode == "200") {
@@ -20,7 +20,7 @@ const newPost = async (question, callbackFun) => {
 
 
 const getQuesByQuesId =  async (questionId) => {
-  await httpClient
+  await Axios
     .get(`/question/${questionId}/detail`)
     .then(res => {
       let data = res.data.data
@@ -33,7 +33,7 @@ const getQuesByQuesId =  async (questionId) => {
 }
 
 const getAllQues = async () => {
-  await httpClient
+  await Axios
     .get(`/question/`)
     .then(res => {
       let data = res.data.data
@@ -46,7 +46,7 @@ const getAllQues = async () => {
 }
 
 const upVote = async () => {
-  await httpClient
+  await Axios
     .get(`/question/`)
     .then(res => {
       let data = res.data.data

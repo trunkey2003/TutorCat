@@ -1,7 +1,5 @@
 const request = require("request");
 const axios = require('axios');
-const endpoint = process.env.API_COMPILER_ADDRESS;
-const accessToken = process.env.API_COMPILER_TOKEN;
 
 class CompilerController {
   createSubmission(req, res, next) {
@@ -54,7 +52,7 @@ class CompilerController {
 
     request.post(
       {
-        url: endpoint + "/submissions?access_token=" + accessToken,
+        url: process.env.API_COMPILER_ADDRESS + "/submissions?access_token=" + process.env.API_COMPILER_TOKEN,
         form: submissionData,
       },
       (err, response) => {
@@ -109,11 +107,11 @@ class CompilerController {
       request.get(
         {
           url:
-            endpoint +
+            process.env.API_COMPILER_ADDRESS +
             "/submissions/" +
             submissionId +
             "?access_token=" +
-            accessToken,
+            process.env.API_COMPILER_TOKEN,
         },
         async (err, response) => {
           if (err) {

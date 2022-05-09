@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import IntlMessages from '../../utils/IntlMessages'
 import Select from 'react-select'
 import Modal from '../Modal'
-import { httpClient } from '../../modules/apiService/config'
+import { Axios } from '../../modules/apiService/config'
 
 
 
@@ -30,7 +30,7 @@ const tags = [
 function saveToServer(file) {
     const fd = new FormData();
     fd.append('photo', file);
-    httpClient
+    Axios
         .post('/question/upload', fd, {
             headers: {
                 'Content-Type': 'multipart/form-data'

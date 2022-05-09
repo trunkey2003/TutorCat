@@ -1,6 +1,6 @@
 import Forum from '../../@meowmeow/components/Layout/Forum'
 import QuestionOverview from '../../@meowmeow/components/QuestionOverview'
-import { httpClient } from '../../@meowmeow/modules/apiService/config'
+import { Axios } from '../../@meowmeow/modules/apiService/config'
 import Error from 'next/error'
 import Head from 'next/head'
 import IntlMessages from '../../@meowmeow/utils/IntlMessages';
@@ -17,7 +17,7 @@ const questionPage = ({ qAll }) => {
 
 
 export async function getStaticProps() {
-    let data = await httpClient
+    let data = await Axios
         .get(`/question/`)
         .then(res => {
             let data = res.data.data

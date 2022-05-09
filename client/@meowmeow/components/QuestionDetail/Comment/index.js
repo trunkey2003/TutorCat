@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
-import { httpClient } from '../../../modules/apiService/config'
+import { Axios } from '../../../modules/apiService/config'
 import toast from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css';
 import IntlMessages from '../../../utils/IntlMessages'
@@ -24,7 +24,7 @@ class Comment extends React.Component {
             "content": this.state.editorHtml,
         }
         toast.loading(<IntlMessages id="modal.loading" />)
-        httpClient
+        Axios
             .post(`/question/${this.state.questionId}/reply/add/`, question, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ class Comment extends React.Component {
             // Move cursor to right side of image (easier to continue typing)
             this.quill.setSelection(range.index + 1);
 
-            const res = await httpClient
+            const res = await Axios
                 .post('/question/upload', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'

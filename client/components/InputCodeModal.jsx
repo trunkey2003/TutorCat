@@ -62,6 +62,7 @@ export default function InputCodeModal({
   };
 
   const handleRunCode = () => {
+    console.log('Run');
     setTimeCode("");
     setMemoryCode("");
     if (sourceCode == "") {
