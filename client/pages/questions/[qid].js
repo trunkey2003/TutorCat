@@ -29,27 +29,27 @@ const questionDetailPage = ({ qDetail, qReply }) => {
     )
 }
 
-export async function getStaticPaths() {
-    let data = await Axios
-        .get(`/question/`)
-        .then(res => {
-            let data = res.data.data
-            return data
-        })
-        .catch(() => {
-            return []
-        }
-        )
-    const paths = data.map(question => ({
-        params: { qid: question._id },
-    }));
-    return {
-        paths,
-        fallback: 'blocking' // false or 'blocking'
-    };
-}
+// export async function getStaticPaths() {
+//     let data = await Axios
+//         .get(`/question/`)
+//         .then(res => {
+//             let data = res.data.data
+//             return data
+//         })
+//         .catch(() => {
+//             return []
+//         }
+//         )
+//     const paths = data.map(question => ({
+//         params: { qid: question._id },
+//     }));
+//     return {
+//         paths,
+//         fallback: 'blocking' // false or 'blocking'
+//     };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     let data = await Axios
         .get(`/question/`)
         .then(res => {
