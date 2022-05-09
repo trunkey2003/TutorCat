@@ -40,7 +40,7 @@ export async function getStaticPaths() {
             return null
         }
         )
-    const paths = data.map(question => ({
+    const paths = data?.map(question => ({
         params: { qid: question._id },
     }));
     return {
