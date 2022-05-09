@@ -135,7 +135,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Question with id ${questionID} ${res} 1 up vote successfully`,
-                data: question.numUpVote,
+                data: question.numUpVote - question.numDownVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
@@ -174,7 +174,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Question with id ${questionID} ${res} 1 down vote successfully`,
-                data: question.numDownVote,
+                data: question.numUpVote - question.numDownVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
@@ -240,7 +240,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Reply with id ${replyID} ${res} 1 up vote successfully`,
-                data: reply.numUpVote,
+                data: reply.numUpVote - reply.numDownVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
@@ -279,7 +279,7 @@ module.exports = {
             return {
                 statusCode: 200,
                 message: `Reply with id ${replyID} ${res} 1 down vote successfully`,
-                data: reply.numDownVote,
+                data: reply.numUpVote - reply.numDownVote,
             };
         } catch (error) {
             throw new AppError(500, error.message);
