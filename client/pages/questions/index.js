@@ -16,7 +16,7 @@ const questionPage = ({ qAll }) => {
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     let data = await Axios
         .get(`/question/`)
         .then(res => {
