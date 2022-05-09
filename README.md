@@ -30,5 +30,5 @@ Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
 - Qua npm: ``npm start``
 - Qua yarn: ``yarn start``
 
-Khuyến khích sử dụng npm run dev ở cả 2 files client và server để tránh lỗi  
+Khuyến khích sử dụng npm run dev thay vì build rồi start ở cả 2 files client và server để tránh lỗi  
 Khuyến khích test trên dev thay vì test trên trang https://tutorcat.vercel.app
