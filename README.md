@@ -19,11 +19,11 @@ Cần cài đặt tất cả các gói trong package.json
 - Qua npm:  ``npm install``
 - Qua yarn: ``yarn``
 #### Môi trường lập trình
-- Qua npm: ``npm dev``
+- Qua npm: ``npm run dev``
 - QUA yarn: ``yarn dev``
 #### Sản phẩm
 Đầu tiên, chúng ta cần xây dựng hệ thống:
-- Qua npm: ``npm build``
+- Qua npm: ``npm run build``
 - Qua yarn: ``yarn build``
 
 Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
