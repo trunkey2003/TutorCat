@@ -1,0 +1,126 @@
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(202, 202, 202);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+.sidebar-menu {
+  border-right: 1px solid rgb(199 199 199);
+}
+
+.navbar-custom {
+  min-height: 3rem;
+  border-top: 3px solid #7dd3fc;
+}
+
+.section {
+  margin-top: 1rem;
+}
+
+.btn-no-uppercase {
+  text-transform: 'none'
+}
+
+.ql-editor {
+  min-height: 20rem;
+}
+
+.m-input {
+  border-color: #ccc;
+}
+
+
+.m-txt2html {
+  word-wrap: break-word;
+}
+
+.m-txt2html>p {
+  padding: 5px 0px 5px 0px;
+}
+
+.m-txt2html>pre {
+  white-space: pre;
+  background-color: #f3f3f3;
+  color: black;
+  overflow: auto;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.m-txt2html>.ql-container.ql-snow {
+  border: none;
+  font-size: 0.9rem;
+  margin: 0px;
+  padding: 0px;
+}
+
+.m-txt2html>.ql-container.ql-snow>.ql-editor {
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.m-txt2html> img {
+  width: 50%;
+}
+
+.m-txt2html>.ql-snow .ql-editor pre.ql-syntax {
+  background-color: #f3f3f3;
+  color: black;
+  overflow: auto;
+}
+
+.m-vote {
+  display: inline-block;
+  text-align: center;
+}
+
+.m-btnVote {
+  cursor: pointer;
+}
+
+.m-pointer {
+  cursor: pointer;
+}
+
+.m-langSwitcher {
+  position:relative;
+}
+
+.m-card-content-6 {
+  display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.m-card-content-9 {
+  display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.m-toast {
+  font-weight: bold;
+}
+
+.m-btn-newques {
+  float: right;
+}

@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.show-chat-box {
+    animation: scroll-out-chat-box 0.70022003s ease;
+    width: 700px;
+  }
+  
+  .hide-chat-box {
+    animation: scroll-in-chat-box 0.70022003s ease;
+    width: 0;
+  }
+  
+  @keyframes scroll-out-chat-box {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+  
+    to {
+      width: 700px;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scroll-in-chat-box {
+    from {
+      width: 700px;
+      opacity: 1;
+    }
+  
+    to {
+      width: 0;
+      opacity: 0;
+    }
+  }
+  
+  .move-out-chat-toogle-button {
+    animation: move-out-chat-toogle-button 0.70022003s ease;
+    left: 700px;
+  }
+  
+  .move-in-chat-toogle-button {
+    animation: move-in-chat-toogle-button 0.70022003s ease;
+    left: 0;
+  }
+  
+  @keyframes move-out-chat-toogle-button {
+    from {
+      left: 0;
+    }
+  
+    to {
+      left: 700px;
+    }
+  }
+  
+  @keyframes move-in-chat-toogle-button {
+    from {
+      left: 700px;
+    }
+  
+    to {
+      left: 0;
+    }
+  }

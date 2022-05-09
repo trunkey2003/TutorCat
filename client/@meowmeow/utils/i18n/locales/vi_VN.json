@@ -1,0 +1,180 @@
+{
+  "config.projectName": "Tutor Cat",
+  "config.time.day": "Ngày",
+  "config.time.days": "Ngày",
+  "config.time.month": "Tháng",
+  "config.time.months": "Tháng",
+  "config.time.year": "Năm",
+  "config.time.years": "Năm",
+  "config.time.and": "Và",
+  "config.time.ago": "trước",
+  "config.error.questionNotFound": "Không tìm thấy câu hỏi",
+
+  "profile.email": "Email",
+  "profile.username": "Tài khoản",
+  "profile.password": "Mật khẩu",
+  "profile.repassword": "Xác nhận mật khẩu",
+  "profile.example.username": "meowmeow",
+  "profile.name": "Tên hiển thị",
+
+  "noti.password.notMatch": "Mật khẩu không khớp!",
+  "noti.signup.notMatch": "Bạn phải nhập tất cả thông tin!",
+  "noti.signout.success": "Tài khoản của bạn đã được đăng xuất",
+  "noti.signout.error": "Tài khoản của bạn chưa được đăng xuất. Bạn có thể xoá Cookies để đăng xuất",
+  "noti.vote.error.upvoted": "Bạn đã bình chọn rồi!",
+  "noti.vote.error.downvoted": "Bạn đã bình chọn rồi!",
+  "noti.signin.required": "Vui lòng đăng nhập để sử dụng",
+
+  "signin.rememberMe": "Nhớ tài khoản",
+  "signin.signin": "Đăng nhập",
+  "signin.btnSignin": "Đăng nhập",
+  "signin.forgetPass": "Quên mật khẩu?",
+  "signin.newAccount": "Tạo tài khoản mới",
+
+  "signup.signup": "Đăng ký",
+  "signup.btnSignup": "Đăng ký",
+
+  "sidebar.explorer": "Khám phá",
+  "sidebar.questions": "Câu hỏi",
+  "sidebar.tags": "Chuyên mục",
+  "sidebar.public": "Cộng đồng",
+  "sidebar.back": "< Quay lại",
+  "sidebar.hello": "Xin chào, ",
+
+  "modal.btnClose": "Đóng",
+  "modal.btnSubmit": "Gửi",
+  "modal.loading": "Đang tải...",
+
+  "navmenu.liveTutor": "Live Tutor",
+  "navmenu.language": "Ngôn ngữ",
+  "navmenu.language.current": "VIE",
+  "navmenu.language.english": "English",
+  "navmenu.language.vietnamese": "Tiếng Việt",
+  "navmenu.profile": "Người dùng",
+  "navmenu.profile.view": "Xem tiểu sử",
+  "navmenu.profile.setting": "Cài đặt",
+  "navmenu.profile.signout": "Đăng xuất",
+
+  "explorer.name": "Khám phá",
+
+  "questions.new": "Câu hỏi mới",
+  "questions.describeProblem": "Mô tả vấn đề của bạn ở bên dưới: ",
+  "questions.addTags": "Gắn nhãn",
+  "questions.btnPost": "Gửi",
+  "questions.dateCreated": "Tạo vào",
+  "questions.by": "Bởi",
+  "questions.modified": "Cập nhật",
+  "questions.viewed": "Lượt xem",
+  "questions.edit": "Chỉnh sửa",
+  "questions.share": "Chia sẻ",
+  "questions.answer": "Câu trả lời",
+  "questions.answers": "Câu trả lời",
+  "questions.answered": "Trả lời",  
+  "questions.add.success": "Tạo câu hỏi thành công!",
+  "questions.add.failed": "Ầuuuuuuuuuu! Hình như chúng tôi gặp lỗi với câu hỏi của bạn. Hãy hoàn thành câu hỏi của bạn để tiếp tục",
+  "questions.btn.goTo": "Đi đến câu hỏi",
+  "questions.title": "Thêm tiêu đề",
+  "questions.writeAnswer": "Trả lời",
+  "questions.allQuestion": "Tất cả câu hỏi",
+  "questions.questions": "Câu hỏi",
+  "questions.question": "Câu hỏi",
+  "questions.vote": "Bình chọn",
+
+  "tags.context.andMore": "Còn nữa...",
+
+  "tags.javascript.title": "Javascript",
+  "tags.javascript.description": "Đối với các câu hỏi liên quan đến lập trình trong ECMAScript (JavaScript / JS) và các phương ngữ / triển khai khác nhau của nó (ngoại trừ ActionScript). Ghi chú...",
+
+  "tags.python.title": "Python",
+  "tags.python.description": "Python là một ngôn ngữ lập trình có tính đa hình, cho phép thay đổi kiểu biến tùy tùy biến, đa mục đích. Nó được thiết kế để học nhanh, ...",
+
+  "tags.java.title": "Java",
+  "tags.java.description": "Java là một ngôn ngữ lập trình hướng đối tượng cấp cao. Sử dụng nhãn này khi bạn gặp sự cố khi sử dụng hoặc hiểu ...",
+
+  "tags.c#.title": "C#",
+  "tags.c#.description": "C # (phát âm là 'see sharp') là một ngôn ngữ lập trình đa mô hình, gõ tĩnh, cấp cao được phát triển bởi Microsoft. Code C # ...",
+
+  "tags.php.title": "Php",
+  "tags.php.description": "PHP là một ngôn ngữ scripting được sử dụng rộng rãi, mã nguồn mở, đa năng, đa mô hình, gõ độngđộng động và thông dịch ban đầu ...",
+
+  "tags.android.title": "Android",
+  "tags.android.description": "Android là hệ điều hành di động của Google, được sử dụng để lập trình hoặc phát triển các thiết bị kỹ thuật số (Điện thoại thông minh, Máy tính bảng, ...",
+
+  "tags.html.title": "Html",
+  "tags.html.description": "HTML (HyperText Markup Language) là ngôn ngữ đánh dấu để tạo các trang web và thông tin khác được hiển thị trong ...",
+
+  "tags.jquery.title": "Jquery",
+  "tags.jquery.description": "jQuery là một thư viện JavaScript, hãy xem xét thêm nhãn JavaScript. jQuery là một thư viện JavaScript trên nhiều trình duyệt phổ biến...",
+
+  "tags.c++.title": "C++",
+  "tags.c++.description": "C ++ là một ngôn ngữ lập trình có tính đa dạng. Ban đầu nó được thiết kế như một phần mở rộng của C và có cú pháp tương tự, nhưng ...",
+
+  "tags.css.title": "Css",
+  "tags.css.description": "CSS (Cascading Style Sheets) là một ngôn ngữ biểu định kiểu biểu diễn được sử dụng để mô tả giao diện và định dạng của HTML ...",
+
+  "tags.ios.title": "iOS",
+  "tags.ios.description": "iOS là hệ điều hành di động chạy trên Apple iPhone, iPod touch và iPad. Sử dụng nhãn này [iOS] cho các câu hỏi liên quan đến ...",
+
+  "tags.r.title": "R",
+  "tags.r.description": "R là một môi trường phần mềm & ngôn ngữ lập trình mã nguồn mở miễn phí dành cho tính toán thống kê, tin sinh học, ...",
+
+  "tags.node.js.title": "Node.js",
+  "tags.node.js.description": "NodeJS là một nền tảng được xây dựng trên V8 JavaScript Engine – trình thông dịch thực thi mã JavaScript, giúp xây dựng các ứng dụng web một cách đơn giản và dễ dàng mở rộng..",
+
+  "tags.arrays.title": "Arrays",
+  "tags.arrays.description": "Mảng là một cấu trúc dữ liệu tuyến tính có thứ tự bao gồm một tập hợp các phần tử (giá trị, biến hoặc tham chiếu), mỗi phần tử được xác định bởi một ...",
+
+  "tags.reactjs.title": "React",
+  "tags.reactjs.description": "React là một thư viện JavaScript để xây dựng giao diện người dùng. Nó sử dụng mô hình khai báo, dựa trên thành phần và nhằm mục đích trở thành cả hai ...",
+
+  "tags.c.title": "C",
+  "tags.c.description": "C là một ngôn ngữ lập trình đa năng được sử dụng để lập trình hệ thống (hệ điều hành và nhúng), thư viện, trò chơi và ...",
+
+  "tags.ruby-on-rails.title": "Ruby on Rails",
+  "tags.ruby-on-rails.description": "Ruby on Rails à một khung ứng dụng web full-stack mã nguồn mở được viết bằng Ruby. Nó tuân theo MVC phổ biến ...",
+
+  "tags..net.title": ".NET",
+  "tags..net.description": "KHÔNG sử dụng cho các câu hỏi về .NET 5+ hoặc .NET Core - thay vào đó hãy sử dụng [.net-core]. .NET framework là một khung phần mềm được thiết kế ...",
+
+  "tags.sql-server.title": "SQL Server",
+  "tags.sql-server.description": "Microsoft SQL Server là một hệ quản trị cơ sở dữ liệu quan hệ (RDBMS). Sử dụng nhãn này cho tất cả các phiên bản Microsoft SQL Server ...",
+
+  "tags.python-3.x.title": "Python 3.x",
+  "tags.python-3.x.description": "CHỈ SỬ DỤNG NẾU CÂU HỎI CỦA BẠN LÀ PHIÊN BẢN-CỤ THỂ. Đối với các câu hỏi về lập trình Python dành riêng cho phiên bản 3+ của ...",
+
+  "tags.swift.title": "Swift",
+  "tags.swift.description": "Swift là một ngôn ngữ lập trình đa năng được phát triển bởi Apple Inc, được phát hành lần đầu tiên vào năm 2014 cho các nền tảng của nó và Linux. Swift là ...",
+
+  "tags.objective-c.title": "Onjective-C",
+  "tags.objective-c.description": "chỉ nên được sử dụng cho các câu hỏi về các tính năng Objective-C hoặc phụ thuộc vào mã trong ngôn ngữ. Các nhãn [cocoa] và ...",
+
+  "tags.django.title": "Django",
+  "tags.django.description": "Django là một khung ứng dụng web phía máy chủ mã nguồn mở được viết bằng Python. Nó được thiết kế để giảm thiểu nỗ lực cần thiết để ...",
+
+  "tags.angular.title": "Angular",
+  "tags.angular.description": "Các câu hỏi về Angular (đừng nhầm với AngularJS), sườn web từ Google. Sử dụng thẻ này cho các câu hỏi Angular ...",
+
+  "tags.angularjs.title": "AngularJS",
+  "tags.angularjs.description": "Sử dụng cho các câu hỏi về AngularJS (1.x), sườn JavaScript mã nguồn mở. KHÔNG sử dụng thẻ này cho các phiên bản Angular 2 trở lên; ...",
+
+  "tags.excel.title": "Excel",
+  "tags.excel.description": "Chỉ dành cho các câu hỏi về lập trình đối với các đối tượng hoặc tệp Excel, hoặc phát triển công thức phức tạp. Bạn có thể kết hợp ...",
+
+  "tags.regex.title": "Regex",
+  "tags.regex.description": "Regular expressions cung cấp một ngôn ngữ khai báo để khớp các mẫu trong chuỗi. Chúng thường được sử dụng cho chuỗi ...",
+
+  "tags.pandas.title": "Pandas",
+  "tags.pandas.description": "Pandas là một thư viện Python để thao tác và phân tích dữ liệu, ví dụ: khung dữ liệu, chuỗi thời gian đa chiều và liên dữ liệu ...",
+
+  "tags.ruby.title": "Ruby",
+  "tags.ruby.description": "Ruby là một ngôn ngữ thông dịch hướng đối tượng động, mã nguồn mở đa nền tảng. Nhãn [Ruby] dành cho các câu hỏi liên quan đến ...",
+
+  "tags.iphone.title": "IPhone",
+  "tags.iphone.description": "trừ khi bạn đang giải quyết cụ thể iPhone và / hoặc iPod touch của Apple. Đối với các câu hỏi không phụ thuộc vào phần cứng, hãy sử dụng ...",
+
+  "tags.ajax.title": "AJAX",
+  "tags.ajax.description": "AJAX (Không đồng bộ JavaScript và XML) là một kỹ thuật để tạo giao diện người dùng trang web tương tác mà không cần ...",
+
+  "tags.linux.title": "Linux",
+  "tags.linux.description": "LƯU Ý: Tất cả các câu hỏi về Linux phải liên quan đến lập trình; nếu không sẽ bị đóng. Chỉ sử dụng nhãn này nếu câu hỏi của bạn liên quan đến ..."
+}
