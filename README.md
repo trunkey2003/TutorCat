@@ -29,3 +29,5 @@ Cần cài đặt tất cả các gói trong package.json
 Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
 - Qua npm: ``npm start``
 - Qua yarn: ``yarn start``
+
+Khuyến khích sử dụng npm run dev ở cả 2 files client và server để tránh lỗi  
