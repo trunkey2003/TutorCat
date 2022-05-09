@@ -27,7 +27,12 @@ module.exports = {
     },
     signOut: async (req, res, next) => {
         try {
-            res.clearCookie('token');
+            res.cookie('token', 'clear', {
+                sameSite: 'none',
+                secure: true,
+                httpOnly: true,
+                maxAge: 0,
+            });
             res.status(200).json({
                 statusCode: 200,
                 message: 'Signed out successfully',
