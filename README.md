@@ -8,7 +8,7 @@ Dự án tham gia cuộc thi WebDev Adventure 2022 - UIT do Meowmeow team thực
 - ... [Đang phát triển]
 
 ## Công nghệ
-Team sử dụng Nodejs, Next.js cùng một số thư viện khác
+Team sử dụng NodeJS, NextJS, PeerJS & SocketIO và một số thư viện khác
 
 ## Cài đặt
 ### Đối với Front-end
@@ -29,7 +29,3 @@ Cần cài đặt tất cả các gói trong package.json
 Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
 - Qua npm: ``npm start``
 - Qua yarn: ``yarn start``
-
-Khuyến khích sử dụng npm run dev thay vì build rồi start ở cả 2 files client và server để tránh lỗi  
-Giám khảo có thể browse code được thực hiện trước 20h 09/05/2022 vì những thay đổi sau 20h là không quan trọng : 
-https://github.com/trunkey2003/tutorcat/tree/c9fa1b497fe4d3e12505015a9a0b35f07317403f commit lúc 7:56 PM
