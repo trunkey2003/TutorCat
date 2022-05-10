@@ -63,7 +63,7 @@ export const useProvideAuth = () => {
 
   const userLogin = (user, callbackFun) => {
     fetchStart();
-    console.log(user)
+    // console.log(user)
     Axios
       .post('/auth/sign-in/', user)
       .then(({ data }) => {

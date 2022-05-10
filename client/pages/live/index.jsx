@@ -41,6 +41,7 @@ export default function Index() {
     Axios.get("/api/room/get")
       .then(({ data }) => {
         setRooms(data);
+        console.log(typeof data[0].createdAt);
       })
       .catch(() => {})
       .finally(() => {
@@ -200,7 +201,7 @@ export default function Index() {
             </h1>
             <hr className="m-4 rounded-2xl border-t-2" />
             <p className="m-4 text-sm">
-              We don{`'`}t require creating an account to use LiveTutor platform, but your space
+              We don{`'`}t require an account to use LiveTutor platform, but your space
               will be limited.
             </p>
           </div>

@@ -154,7 +154,7 @@ export default function LiveRoom({ roomID }) {
   }, [alerts, messages, remoteSocketID, unreadMessages, classChatBox, socket]);
 
   const handleRemoteNewMessage = useCallback(() => {
-    console.log(messages);
+    // console.log(messages);
     if (classChatBox == "hide-chat-box" || classChatBox == "w-0 hidden") {
       setUnreadMessages(unreadMessages + 1);
     }

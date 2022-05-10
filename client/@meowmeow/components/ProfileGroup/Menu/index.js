@@ -9,7 +9,7 @@ import { useAuth } from '../../../authentication/index'
 const Menu = (props) => {
     const { userSignOut } = useAuth();
     let user = JSON.parse(getLocalStorage("user", true, null))
-    console.log(user)
+    // console.log(user)
     const router = useRouter();
     let name = (user === undefined || user === null) ? "" : user.name
     return (

@@ -5,7 +5,7 @@ import IntlMessages from '../../../utils/IntlMessages'
 import {Axios} from '../../../modules/apiService/config'
 
 const Vote = ({ questionId, voteIndex, question }) => {
-    console.log(questionId)
+    // console.log(questionId)
     const [vote, setVote] = useState(voteIndex);
     const { authUser } = useAuth();
 

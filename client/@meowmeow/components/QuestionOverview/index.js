@@ -3,7 +3,7 @@ import IntlMessages from '../../utils/IntlMessages'
 import Link from 'next/link'
 
 const QuestionOverview = ({ data }) => {
-    console.log(data)
+    // console.log(data)
     return (
         <>
             <div className="container">

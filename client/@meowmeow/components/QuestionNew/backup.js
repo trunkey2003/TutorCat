@@ -70,13 +70,13 @@ class newPost extends Component {
     imageHandler = (editor) => {
         const input = document.createElement('input');
         let quillEditor = editor
-        console.log(editor)
+        // console.log(editor)
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
         input.click();
         input.onchange = async function () {
             const file = input.files[0];
-            console.log('User trying to uplaod this:', file);
+            // console.log('User trying to uplaod this:', file);
 
             const link = await saveToServer(file); 
             quillEditor.insertEmbed(null, "image", link);
@@ -102,7 +102,7 @@ class newPost extends Component {
     handleSubmit = () => {
         this.setState({ openModal: true, modalType: 'loading' })
         setTimeout(() => this.setState({ openModal: true, modalType: null }), 2000)
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     render() {

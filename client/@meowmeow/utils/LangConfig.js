@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function LangConfig({ children }) {
     const langCode = useSelector((langCode) => langCode.LangCode);
-    console.log("lang: "+langCode)
+    // console.log("lang: "+langCode)
     switch (langCode) {
         case 1:
             var lang = AppLocale.en;

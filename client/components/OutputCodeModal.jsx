@@ -101,7 +101,7 @@ export default function OutputCodeModal({
 
     Axios.post("/api/compiler/submission/create-and-get-result", body)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         if (data.warning) setWarning(data.warning);
 
         if (data.error) {

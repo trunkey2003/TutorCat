@@ -62,7 +62,7 @@ export default function InputCodeModal({
   };
 
   const handleRunCode = () => {
-    console.log('Run');
+    // console.log('Run');
     setTimeCode("");
     setMemoryCode("");
     if (sourceCode == "") {
@@ -79,7 +79,7 @@ export default function InputCodeModal({
 
     Axios.post("/api/compiler/submission/create-and-get-result", body)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         if (data.warning) setWarning(data.warning);
 
         if (data.error) {

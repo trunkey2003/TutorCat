@@ -72,7 +72,7 @@ class Comment extends React.Component {
                 })
                 .then(({ data }) => {
                     if (data.statusCode == "200") {
-                        console.log(data.data)
+                        // console.log(data.data)
                         return data.data;
                     }
                     else {
