@@ -859,7 +859,7 @@ export default function Index() {
                   />
                 </div>
                 <p className="text-gray-600 text-[12px] italic">
-                  Be specific and imagine you’re asking a question to another person
+                  Be specific like you’re asking a question to another person
                 </p>
                 <div className="flex justify-end">
                   <button
