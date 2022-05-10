@@ -29,3 +29,15 @@ Cần cài đặt tất cả các gói trong package.json
 Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
 - Qua npm: ``npm start``
 - Qua yarn: ``yarn start``
+
+### Đối với Back-end
+Cần cài đặt tất cả các gói trong package.json
+- Qua npm:  ``npm install``
+- Qua yarn: ``yarn``
+#### Môi trường lập trình
+- Qua npm: ``npm run dev``
+- QUA yarn: ``yarn dev``
+#### Môi trường sản phẩm 
+- Qua npm: ``npm start``
+- Qua yarn: ``yarn start``
+
