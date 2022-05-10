@@ -3,8 +3,8 @@
 Dự án tham gia cuộc thi WebDev Adventure 2022 - UIT do Meowmeow team thực hiện
 
 ## Tính năng
-- Thảo luận, trao đổi qua các câu hỏi được tạo trên diễn đàn.
-- LiveTutor giúp người dùng tương tác, hỗ trợ lẫn nhau nhờ chức năng đàm thoại (Live Chat), Code-Block, chia sẻ màn hình thiết bị theo thời gian thực
+- Thảo luận, trao đổi qua các câu hỏi và các chủ đề được tạo trên diễn đàn
+- Tạo meeting video Q&A không cần tài khoản nhanh chóng và tiện lợi chỉ trong 5 phút. Gửi code và chạy code trên web với thời gian thực
 - ... [Đang phát triển]
 
 ## Công nghệ
