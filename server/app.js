@@ -21,7 +21,7 @@ app.use(express.json());
 
 const corsConfig = {
     credentials: true,
-    origin: true,
+    origin: [process.env.clientI, process.env.clientII],
 };
 
 app.use(cors(corsConfig));
