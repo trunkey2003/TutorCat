@@ -23,7 +23,7 @@ const HomePage = () => {
 
             <a
               href="/live"
-              className="mx-auto lg:mx-0 hover:underline text-white font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48 bg-blue-900"
+              className="mx-auto lg:mx-0 hover:bg-opacity-80 text-white font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48 bg-blue-900"
 
             >
               Live Tutor
