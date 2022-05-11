@@ -182,9 +182,7 @@ module.exports = {
     },
     getAllReply: async (questionID) => {
         try {
-            let reply = (await Reply.find()).filter((item) => {
-                return item.questionID.toString() === questionID.toString();
-            });
+            let reply = await Reply.find({ questionID }).populate('userID', 'name');
             return {
                 statusCode: 200,
                 message: `Get all reply from question with id ${questionID}`,
