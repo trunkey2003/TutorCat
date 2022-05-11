@@ -7,7 +7,7 @@ router.post('/sign-in', authController.signIn);
 
 router.post('/sign-up', authController.signUp);
 
-router.get('/sign-out', authController.signOut);
+router.delete('/sign-out', authController.signOut);
 
 router.post('/forget-password', authController.forgetPassword);
 
