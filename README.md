@@ -4,7 +4,7 @@ Dự án tham gia cuộc thi WebDev Adventure 2022 - UIT do Meowmeow team thực
 
 ## Tính năng
 - Thảo luận, trao đổi qua các câu hỏi và các chủ đề được tạo trên diễn đàn
-- Tạo meeting video Q&A không cần tài khoản nhanh chóng và tiện lợi chỉ trong 5 phút. Gửi code và chạy code trên web với thời gian thực
+- Tạo meeting video Q&A không cần tài khoản nhanh chóng và tiện lợi trong chưa đến 1 phút. Gửi code và chạy code trên web với thời gian thực
 - ... [Đang phát triển]
 
 ## Công nghệ
