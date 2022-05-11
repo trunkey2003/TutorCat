@@ -3,12 +3,12 @@
 Dự án tham gia cuộc thi WebDev Adventure 2022 - UIT do Meowmeow team thực hiện
 
 ## Tính năng
-- Thảo luận, trao đổi qua các câu hỏi được tạo trên diễn đàn.
-- LiveTutor giúp người dùng tương tác, hỗ trợ lẫn nhau nhờ chức năng đàm thoại (Live Chat), Code-Block, chia sẻ màn hình thiết bị theo thời gian thực
+- Thảo luận, trao đổi qua các câu hỏi và các chủ đề được tạo trên diễn đàn
+- Tạo meeting video Q&A không cần tài khoản nhanh chóng và tiện lợi trong chưa đến 1 phút. Gửi code và chạy code trên web với thời gian thực
 - ... [Đang phát triển]
 
 ## Công nghệ
-Team sử dụng Nodejs, Next.js cùng một số thư viện khác
+Team sử dụng NodeJS, NextJS, PeerJS & SocketIO và một số thư viện khác
 
 ## Cài đặt
 ### Đối với Front-end
@@ -30,6 +30,14 @@ Tiếp theo, chạy lệnh dưới đây để khởi chạy hệ thống:
 - Qua npm: ``npm start``
 - Qua yarn: ``yarn start``
 
-Khuyến khích sử dụng npm run dev thay vì build rồi start ở cả 2 files client và server để tránh lỗi  
-Giám khảo có thể browse code được thực hiện trước 20h 09/05/2022 vì những thay đổi sau 20h là không quan trọng : 
-https://github.com/trunkey2003/tutorcat/tree/c9fa1b497fe4d3e12505015a9a0b35f07317403f commit lúc 7:56 PM
+### Đối với Back-end
+Cần cài đặt tất cả các gói trong package.json
+- Qua npm:  ``npm install``
+- Qua yarn: ``yarn``
+#### Môi trường lập trình
+- Qua npm: ``npm run dev``
+- QUA yarn: ``yarn dev``
+#### Môi trường sản phẩm 
+- Qua npm: ``npm start``
+- Qua yarn: ``yarn start``
+

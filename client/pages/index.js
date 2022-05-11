@@ -16,14 +16,14 @@ const HomePage = () => {
               <IntlMessages id="config.projectName" />
             </h1>
             <p
-              className="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8"
+              className="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8 flex items-center justify-center"
             >
               <IntlMessages id="landingpage.slogan" />
             </p>
 
             <a
               href="/live"
-              className="mx-auto lg:mx-0 hover:underline text-white font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48 bg-blue-900"
+              className="mx-auto lg:mx-0 hover:bg-opacity-80 text-white font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg w-48 bg-blue-900"
 
             >
               <IntlMessages id="landingpage.btn.liveTutor" />

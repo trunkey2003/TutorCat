@@ -130,7 +130,7 @@ export const useProvideAuth = () => {
 
   const userSignOut = () => {
     Axios
-      .get('/auth/sign-out/')
+      .delete('/auth/sign-out/')
       .then(() => {
         dispatch(signOut())
         setAuthUser(false)
