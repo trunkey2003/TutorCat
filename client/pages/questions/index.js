@@ -1,13 +1,12 @@
 import Forum from '../../@meowmeow/components/Layout/Forum'
 import QuestionOverview from '../../@meowmeow/components/QuestionOverview'
 import { Axios } from '../../@meowmeow/modules/apiService/config'
-import Error from 'next/error'
-import Head from 'next/head'
-import IntlMessages from '../../@meowmeow/utils/IntlMessages';
+import { Heading } from '../../@meowmeow/modules'
 
 const questionPage = ({ qAll }) => {
     return (
         <>
+            <Heading title1="config.projectName" title2="questions.allQuestion" description="landingpage.slogan"/>
             <Forum>
                 <QuestionOverview data={qAll} />
             </Forum>
@@ -15,11 +14,10 @@ const questionPage = ({ qAll }) => {
     )
 }
 
-
 export async function getServerSideProps() {
     let data = await Axios
         .get(`/question/`)
-        .then(res => {
+        .then((res) => {
             let data = res.data.data
             return data
         })

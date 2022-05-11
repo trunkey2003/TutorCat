@@ -3,7 +3,7 @@ import IntlMessages from '../../utils/IntlMessages'
 import 'react-quill/dist/quill.snow.css'
 import 'highlight.js/styles/base16/solarized-light.css'
 import Detail from './Detail'
-import { useAuth } from '../../authentication/index'
+import { loggedIn } from '../../authentication/index'
 import Tags from '../Tags'
 import Comment from './Comment'
 
@@ -24,7 +24,7 @@ function QuestionDetail(props) {
 
     const qDetail = props.data
     const qAnswer = props.answer
-    const {authUser} = useAuth();
+    const authUser = loggedIn();
     return (
         <>
             <div className="container q-title-container">
@@ -37,20 +37,10 @@ function QuestionDetail(props) {
             </div>
             <div className="divider my-1"></div>
             <div className="container q-content-container">
-                <Detail user={qDetail.userID} detail={qDetail.content} voteIndex={qDetail.numUpVote - qDetail.numDownVote} time={qDetail.dateCreated} question={true}  id={qDetail._id}/>
+                <Detail user={qDetail.userID} detail={qDetail.content} voteIndex={qDetail.numUpVote - qDetail.numDownVote} time={qDetail.dateCreated} question={true}  id={qDetail._id} questionId={qDetail._id}/>
             </div>
             <div className="divider my-1"></div>
-            {authUser ? <Comment questionId={qDetail._id}/> : <></>}
-            <div className="container a-content-container">
-                <h3 className="text-xl mb-5">{qAnswer.length} {(qAnswer.length > 1) ? <IntlMessages id="questions.answers" /> : <IntlMessages id="questions.answer" />}</h3>
-                {qAnswer.map((comment) => (
-                    <>
-                        <Detail user={comment.userID} detail={comment.content} voteIndex={comment.numUpVote - comment.numDownVote} time={comment.dateCreated} question={false} id={qDetail._id}/>
-                        <div className="divider my-1"></div>
-                    </>
-                )
-                )}
-            </div>
+            <Comment qDetail={qDetail} qAnswer={qAnswer}/>
         </>
         // : <>
         //     <PageLoader />

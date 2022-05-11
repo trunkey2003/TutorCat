@@ -1,5 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { useProvideAuth } from './auth-methods/jwt-auth';
+import { useSelector, useDispatch } from "react-redux";
+import { signIn, signOut } from "../redux/actions/user";
 
 const authContext = createContext();
 // Provider component that wraps your app and makes auth object ..
@@ -16,4 +18,9 @@ export function AuthProvider({ children }) {
 export const useAuth = () => {
   return useContext(authContext);
 };
+
+export const loggedIn = () =>{
+  const result = useSelector((res) => res.Config.loggedIn);
+  return result;
+} 
 

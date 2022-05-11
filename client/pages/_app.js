@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
                     <Head>
-                        <title>Demo - Tutor Cat</title>
+                        <title>Tutor Cat - The first realtime Q&A platform</title>
                         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
                     </Head>
                     <LangConfig>

@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Loading from "../../components/Loading";
 import AuthLayout from "../../@meowmeow/components/Layout/TrunkeyAuth";
+import { Heading } from '../../@meowmeow/modules'
 
 const style = {
   position: "absolute",

@@ -3,18 +3,25 @@ import IntlMessages from '../../utils/IntlMessages'
 import toast from 'react-hot-toast'
 import Link from 'next/link'
 
-const QuestionOverview = ({ data }) => {
+const TagsDetail = ({ data, name }) => {
+    // console.log(data)
     return (
         <>
             <div className="container">
                 <div className="grid grid-cols-2">
-                    <h1 className="text-2xl"><IntlMessages id="questions.allQuestion" /></h1>
+                    <h1 className="text-2xl"> <IntlMessages id="tags.tag" /></h1>
                     <div className="justify-self-end">
                         <a href="/questions/new">
                             <label className="btn btn-sm btn-primary w"><IntlMessages id="questions.new" /></label>
                         </a>
                     </div>
                 </div>
+                <h2 className="text-4xl text-primary">
+                    {name}
+                </h2>
+                <p className="text-sm my-2">
+                    <IntlMessages id={`tags.${name}.description`} />
+                </p>
                 <h2 className="text-md mb-8">{data.length} {(data.length > 1) ? <IntlMessages id="questions.questions" /> : <IntlMessages id="questions.question" />}</h2>
                 <div className="container">
                     {data.map((data) => (
@@ -37,4 +44,4 @@ const QuestionOverview = ({ data }) => {
     )
 }
 
-export default QuestionOverview;
+export default TagsDetail;

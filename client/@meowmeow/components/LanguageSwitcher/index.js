@@ -1,9 +1,9 @@
 import IntlMessages from "../../utils/IntlMessages";
 import { useSelector, useDispatch } from "react-redux";
-import { setEng, setVi } from "../../redux/actions/lang";
+import { setEng, setVi } from "../../redux/actions/config";
 
 export default function LanguageSwitcher() {
-    const langCode = useSelector((langCode) => langCode.LangCode);
+    const langCode = useSelector((res) => res.Config.langCode);
     const dispatch = useDispatch();
     return (
         <div className="dropdown mr-2">

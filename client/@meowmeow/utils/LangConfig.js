@@ -3,7 +3,7 @@ import AppLocale from './i18n';
 import { useSelector, useDispatch } from "react-redux";
 
 export default function LangConfig({ children }) {
-    const langCode = useSelector((langCode) => langCode.LangCode);
+    const langCode = useSelector((res) => res.Config.langCode);
     // console.log("lang: "+langCode)
     switch (langCode) {
         case 1:

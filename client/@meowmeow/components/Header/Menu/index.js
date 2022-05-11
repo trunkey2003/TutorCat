@@ -22,9 +22,15 @@ const MenuSecond = (props) => {
         //     }
 
         // </ul>
-        <a href="/live" className="ml-5 font-bold">
-            Live Tutor
-        </a>
+        <>
+            <a href="/live" className="pl-4 my-2 font-bold">
+                Live Tutor
+            </a>
+            <a href="/questions" className="pl-4 my-2 font-bold">
+                <IntlMessages id="sidebar.explorer" />
+            </a>
+        </>
+
     );
 }
 
@@ -32,25 +38,15 @@ const MenuPublic = (props) => {
     const router = useRouter();
     return (
         <ul className="menu menu-vertical menu-compact text-gray md:mt-5">
-            <li key="999"
-            className={
-                (-1 != router.pathname.search("/explorer"))?"active":""
-            }>
-                <Link href="/explorer">
-                    <a >
-                        <IntlMessages id="sidebar.explorer" />
-                    </a>
-                </Link>
-            </li>
             <li className="menu-title section uppercase" key={<IntlMessages id="sidebar.public" />}>
                 <span ><IntlMessages id="sidebar.public" /></span>
             </li>
             {
                 PublicMenu.map((row, index) => (
                     <li key={index}
-                    className={
-                        (-1 != router.pathname.search(row.link))?"border-r-4 border-primary":""
-                    }>
+                        className={
+                            (-1 != router.pathname.search(row.link)) ? "border-r-4 border-primary" : ""
+                        }>
                         <Link href={row.link}>
                             <a >
                                 {row.name}

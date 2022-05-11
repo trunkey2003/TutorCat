@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 import { Axios } from '../../../modules/apiService/config'
 import toast from 'react-hot-toast'
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, deleteUser } from "../../../redux/actions/user";
-import { setEng, setVi } from "../../../redux/actions/lang";
+import { signIn, signOut } from "../../../redux/actions/config";
 import { getLocalStorage, setLocalStorage } from "../../../modules"
 import IntlMessages from '../../../utils/IntlMessages'
 
@@ -68,20 +67,20 @@ export const useProvideAuth = () => {
       .post('/auth/sign-in/', user)
       .then(({ data }) => {
         if (data.statusCode == "200") {
-          toast.success(data.message)
+          toast.success(<IntlMessages id="noti.signin.success"/>)
+          dispatch(signIn())
           setTimeout(() => {
-
             setAuthUser(true)
             setLoadingAuthUser(false)
           }, 1000)
           getInfo()
         }
         else {
-          toast.error(data.message);
+          toast.error(<IntlMessages id="noti.signin.failed"/> );
         }
       })
       .catch(function (error) {
-        toast.error(error.message);
+        toast.error(<IntlMessages id="noti.signin.failed"/> );
       })
   }
 
@@ -92,15 +91,20 @@ export const useProvideAuth = () => {
       .then(({ data }) => {
         fetchSuccess();
         if (data.statusCode == "200") {
-          toast.success(data.message);
+          toast.success(<IntlMessages id="noti.signup.success"/>);
+          const data = {
+            email: user.email,
+            password: user.password,
+          }
+          userLogin(data)
         }
         else {
-          toast.error(data.message);
+          toast.error(<IntlMessages id="noti.signup.failed"/> );
         }
       })
       .catch(function (error) {
-        toast.error(error.message);
-      });
+        toast.error(<IntlMessages id="noti.signup.failed"/>);
+      })
   };
 
 
@@ -128,6 +132,7 @@ export const useProvideAuth = () => {
     Axios
       .get('/auth/sign-out/')
       .then(() => {
+        dispatch(signOut())
         setAuthUser(false)
         setLocalStorage("user", true, null)
         toast.success(<IntlMessages id="noti.signout.success"/>)
@@ -142,16 +147,19 @@ export const useProvideAuth = () => {
       .get('/user/get-info')
       .then(({ data }) => {
         if (data.statusCode == "200") {
+          dispatch(signIn())
           setLocalStorage("user", true, data.info)
           setAuthUser(true)
           setLoadingAuthUser(false)
         }
         else {
+          dispatch(signOut())
           setAuthUser(false)
           setLoadingAuthUser(true)
         }
       })
       .catch(function (error) {
+        dispatch(signOut())
         setAuthUser(false)
         setLoadingAuthUser(true)
         // toast.error(error.message)
@@ -160,52 +168,11 @@ export const useProvideAuth = () => {
 
 
   const changeInfo = (user, callbackFun) => {
-    fetchStart();
-    const token = localStorage.getItem('token');
-    Axios.defaults.headers.common['Authorization'] = token;
-    Axios
-      .post('/change_user_info', user, axiosConfig)
-      .then(({ data }) => {
-
-        fetchSuccess();
-        if ((data.status) != "0") {
-          fetchError(messageChange(data.status));
-        } else if ((data.status) == "0") {
-          fetchNoti(messageChange(data.status));
-          getAuthUser();
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-          //if (callbackFun) callbackFun();
-        } else {
-          fetchError(messageSignup(data.status));
-        }
-      })
-      .catch(function (error) {
-        fetchError(error.message);
-      });
+   
   };
 
   const getAuthUser = () => {
-    fetchStart();
-    Axios
-      .post('/check_token', axiosConfig)
-      .then(({ data }) => {
-        if ((data.status) == "0") {
-          localStorage.setItem('name', data.user.name);
-          localStorage.setItem('email', data.user.email);
-          localStorage.setItem('company', data.user.company);
-          fetchSuccess();
-          setAuthUser(token);
-        } else {
-          userSignOut();
-          fetchError(data.status);
-        }
-      })
-      .catch(function (error) {
-        Axios.defaults.headers.common['Authorization'] = '';
-        fetchError(error.message);
-      });
+    
   };
 
   // Subscribe to user on mount

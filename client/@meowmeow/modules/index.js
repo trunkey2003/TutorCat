@@ -1,5 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import dayjs from "dayjs"
+import Head from 'next/head'
+import GetTranslateText from '../../@meowmeow/utils/GetTranslateText'
+
+const Heading = ({ title1, title2, description }) => {
+    return (
+        <Head>
+            <meta charset="utf-8"/>
+            <title>{GetTranslateText(title1)} - {GetTranslateText(title2)}</title>
+            <meta name="description" content={GetTranslateText(description)} />
+            <meta name="googlebot" content="noindex" />
+            <meta name="googlebot-news" content="nosnippet" />
+        </Head>
+    )
+}
+
 
 function date2local(pastDate) {
     var utc = require('dayjs/plugin/utc')
@@ -80,4 +95,5 @@ export {
     date2local,
     getLocalStorage,
     setLocalStorage,
+    Heading
 }

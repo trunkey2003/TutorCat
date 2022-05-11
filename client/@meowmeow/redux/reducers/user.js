@@ -1,11 +1,11 @@
-export const User = (data = null, action) => {
+export const User = (data = false, action) => {
   switch (action.type) {
-    case "SET_USER":
-      return data = action.info; 
-    case "DELETE_USER":
-      return data = null;
+    case "SIGN_IN":
+      return data = true; 
+    case "SIGN_OUT":
+      return data = false;
     default:
-      return data = null;
+      return data = false;
   }
 };
 export default User

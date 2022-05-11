@@ -76,8 +76,12 @@
 
 }
 
-.m-txt2html> img {
-  width: 50%;
+.m-txt2html img {
+  width: 70%;
+  margin: 5px 0px 5px 0px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .m-txt2html>.ql-snow .ql-editor pre.ql-syntax {

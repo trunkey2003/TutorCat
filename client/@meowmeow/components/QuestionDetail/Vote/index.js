@@ -16,11 +16,11 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     .post(`/question/${questionId}/up-vote/`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
-                            setVote(vote + 1)
+                            setVote(data.data)
                         else toast.error(<IntlMessages id="noti.vote.error.upvoted" />)
                     })
                     .catch((error) => {
-                        toast.error("error")
+                        toast.error(<IntlMessages id="noti.vote.error.upvoted" />)
                     }
                     )
             } else {
@@ -28,11 +28,11 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     .post(`/question/${questionId}/reply/up-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
-                            setVote(vote + 1)
+                            setVote(data.data)
                         else toast.error(<IntlMessages id="noti.vote.error.upvoted" />)
                     })
                     .catch((error) => {
-                        toast.error("error")
+                        toast.error(<IntlMessages id="noti.vote.error.upvoted" />)
                     }
                     )
             }
@@ -48,11 +48,11 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     .post(`/question/${questionId}/down-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
-                            setVote(vote - 1)
+                            setVote(data.data)
                         else toast.error(<IntlMessages id="noti.vote.error.downvoted" />)
                     })
                     .catch((error) => {
-                        toast.error("error")
+                        toast.error(<IntlMessages id="noti.vote.error.upvoted" />)
                     }
                     )
             } else {
@@ -60,11 +60,11 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     .post(`/question/${questionId}/reply/down-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
-                            setVote(vote - 1)
+                            setVote(data.data)
                         else toast.error(<IntlMessages id="noti.vote.error.downvoted" />)
                     })
                     .catch((error) => {
-                        toast.error("error")
+                        toast.error(<IntlMessages id="noti.vote.error.upvoted" />)
                     }
                     )
             }

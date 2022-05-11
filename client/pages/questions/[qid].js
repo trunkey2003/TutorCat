@@ -2,29 +2,28 @@ import Forum from '../../@meowmeow/components/Layout/Forum'
 import PageLoader from '../../@meowmeow/components/PageComponents/PageLoader'
 import dynamic from 'next/dynamic';
 import QuestionDetail from '../../@meowmeow/components/QuestionDetail'
-import { getQuesByQuesId, getAllQues } from '../../@meowmeow/modules/apiService/index'
 import { Axios } from '../../@meowmeow/modules/apiService/config'
-import Error from 'next/error'
-import Head from 'next/head'
-import IntlMessages from '../../@meowmeow/utils/IntlMessages';
+import Error from '../_error'
+import { Heading } from "../../@meowmeow/modules"
+import Head from "next/head"
 
 const questionDetailPage = ({ qDetail, qReply }) => {
+    const { convert } = require('html-to-text');
+    const content = convert(qDetail.content, {
+        selectors: [ { selector: 'img', format: 'skip' } ]
+    })
     return (
         <>
             {(qDetail !== undefined && qDetail !== null) ?
                 <>
                     <Head>
                         <title>{qDetail.categories[0] !== undefined ? qDetail.categories[0].category:""} - {qDetail.title}</title>
-                        <meta name="description" content={qDetail.content}></meta>
+                        <meta name="description" content={content}/>
                     </Head>
                 </>
                 :
-                <Head>
-                    <title><IntlMessages id="config.projectName" /> - <IntlMessages id="config.error.questionNotFound" /></title>
-                </Head>}
-            <Forum>
-                {(qDetail === undefined || qDetail === null) ? <Error statusCode={404} /> : <QuestionDetail data={qDetail} answer={qReply}/>}
-            </Forum>
+                <></>}
+                {(qDetail === undefined || qDetail === null) ? <Error statusCode={404} /> : <Forum><QuestionDetail data={qDetail} answer={qReply}/></Forum>}
         </>
     )
 }

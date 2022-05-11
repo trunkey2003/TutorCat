@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import Auth from "../Layout/Auth";
-import Head from 'next/head';
 import IntlMessages from '../../utils/IntlMessages';
 import { useAuth } from '../../authentication';
 
@@ -16,9 +15,6 @@ export default function Login() {
 
     return (
         <>
-            <Head>
-                <title>Sign In</title>
-            </Head>
             <Auth>
                 <div className="container h-full w-full mr-0">
                     <div className="flex justify-center items-center py-20 p-3">
@@ -27,7 +23,7 @@ export default function Login() {
                                 <div className="flex-auto px-4 lg:px-10 py-10 pt-3">
                                     <form>
                                         <div className="relative w-full mb-3">
-                                            <h3 className="text-3xl font-normal leading-normal mt-0 mb-2">
+                                            <h3 className="text-3xl font-normal leading-normal mt-6 mb-2">
                                                 <IntlMessages id="signin.signin" />
                                             </h3>
                                         </div>
@@ -60,7 +56,7 @@ export default function Login() {
                                             />
                                         </div>
                                         <div>
-                                            <label className="inline-flex items-center cursor-pointer">
+                                            <label className="inline-flex items-center cursor-pointer hidden">
                                                 <input
                                                     id="customCheckLogin"
                                                     type="checkbox"
@@ -84,7 +80,7 @@ export default function Login() {
                                     </form>
                                 </div>
                             </div>
-                            <div className="flex flex-wrap mt-6 relative">
+                            <div className="flex flex-wrap mt-6 relative hidden">
                                 <div className="w-1/2">
                                     <a
                                         href=""

@@ -4,8 +4,11 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/base16/solarized-light.css'
 import parse from 'html-react-parser'
 import Vote from '../Vote'
-import { date2local } from '../../../modules'
+import { date2local, getLocalStorage } from '../../../modules'
 import IntlMessages from '../../../utils/IntlMessages'
+import { loggedIn } from '../../../authentication/index'
+import toast from 'react-hot-toast'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 hljs.configure({
     languages: ['javascript', 'ruby', 'python', 'rust', 'c++', 'undefined'],
@@ -44,7 +47,33 @@ class Quill2Html extends Component {
     }
 }
 
-const Detail = ({ detail, voteIndex, time, id, user, question }) => {
+const Share = ({questionId}) => {
+    const copied = () => {
+        toast.success(<IntlMessages id="noti.copied" />)
+    }
+    let url = window.location.protocol + "//" + window.location.host +"/quesions/" + questionId;
+    return (
+        <CopyToClipboard text={url}
+          onCopy={() => copied()}>
+           <a className="text-primary text-sm m-pointer"><IntlMessages id="questions.share" /></a>
+        </CopyToClipboard>
+    )
+}
+
+const Detail = ({ detail, voteIndex, time, id, questionId, user, question }) => {
+    const authUser = loggedIn()
+    let userDetail = JSON.parse(getLocalStorage("user", true, null))
+    const edit = ({question, id, questionId}) => {
+        if (authUser){
+            if (user._id === userDetail._id)
+            {
+                const url = question ? `/questions/edit/${questionId}`: `/questions/${questionId}/answers/edit/${id}`
+                window.location.href = url
+            }
+            else toast.error(<IntlMessages id="noti.edit.nopermission" />)
+        }
+        else toast.error(<IntlMessages id="noti.signin.required" />)
+    }
     return (
         <>
             <div className="flex flex-row">
@@ -71,14 +100,17 @@ const Detail = ({ detail, voteIndex, time, id, user, question }) => {
                     </div>
                     <div className="grid grid-flow-col gap-0">
                         <div className="flex flex-nowrap gap-2">
-                            <a className="text-primary text-sm m-pointer"><IntlMessages id="questions.share" /></a>
-                            <a className="text-primary text-sm m-pointer"><IntlMessages id="questions.edit" /></a>
+                        {question ?<Share questionId={questionId}/>: <></>}
+                            <a className="text-primary text-sm m-pointer"
+                            onClick={() => edit({question, id, questionId})}
+                            >
+                                <IntlMessages id="questions.edit" />
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    )}
 
 export default Detail
