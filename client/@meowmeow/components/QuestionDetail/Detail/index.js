@@ -58,7 +58,7 @@ const Detail = ({ detail, voteIndex, time, id, user, question }) => {
                     <div className="flex flex-nowrap gap-3 items-center my-3">
                         <div className="avatar">
                             <div className="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                <img src={`https://ui-avatars.com/api/?name=${user.name}`} />
+                                <img src={`https://ui-avatars.com/api/?name=${user.name}`} alt={user.name}/>
                             </div>
                         </div>
                         <div className="grid grid-rows-2 gap-0 ">
