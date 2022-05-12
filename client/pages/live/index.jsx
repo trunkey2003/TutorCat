@@ -9,11 +9,9 @@ import { Heading } from '../../@meowmeow/modules'
 import toast from 'react-hot-toast';
 import InApp from 'detect-inapp';
 
-const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
-
 const checkBrowser = () => {
-  let browser = inapp.browser
-  console.log(browser)
+  const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
+  let browser = (inapp.browser)
   if (browser != "chrome")
    toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`)
 }
@@ -46,7 +44,7 @@ export default function Index() {
   const [rooms, setRooms] = useState([]);
 
   const socket = useRef();
-
+  checkBrowser()
   useEffect(() => {
     setLoading(true);
     socket.current = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/live`);
@@ -70,7 +68,7 @@ export default function Index() {
         setRooms(data);
       });
     });
-    checkBrowser()
+    
   }, []);
 
   const handleSubmitTitle = () => {
