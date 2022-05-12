@@ -67,20 +67,18 @@ export const useProvideAuth = () => {
       .post('/auth/sign-in/', user)
       .then(({ data }) => {
         if (data.statusCode == "200") {
-          toast.success(<IntlMessages id="noti.signin.success"/>)
+          toast.success(<IntlMessages id="noti.signin.success" />)
           dispatch(signIn())
-          setTimeout(() => {
-            setAuthUser(true)
-            setLoadingAuthUser(false)
-          }, 1000)
+          setAuthUser(true)
+          setLoadingAuthUser(false)
           getInfo()
         }
         else {
-          toast.error(<IntlMessages id="noti.signin.failed"/> );
+          toast.error(<IntlMessages id="noti.signin.failed" />);
         }
       })
       .catch(function (error) {
-        toast.error(<IntlMessages id="noti.signin.failed"/> );
+        toast.error(<IntlMessages id="noti.signin.failed" />);
       })
   }
 
@@ -91,7 +89,7 @@ export const useProvideAuth = () => {
       .then(({ data }) => {
         fetchSuccess();
         if (data.statusCode == "200") {
-          toast.success(<IntlMessages id="noti.signup.success"/>);
+          toast.success(<IntlMessages id="noti.signup.success" />);
           const data = {
             email: user.email,
             password: user.password,
@@ -99,11 +97,11 @@ export const useProvideAuth = () => {
           userLogin(data)
         }
         else {
-          toast.error(<IntlMessages id="noti.signup.failed"/> );
+          toast.error(<IntlMessages id="noti.signup.failed" />);
         }
       })
       .catch(function (error) {
-        toast.error(<IntlMessages id="noti.signup.failed"/>);
+        toast.error(<IntlMessages id="noti.signup.failed" />);
       })
   };
 
@@ -135,10 +133,10 @@ export const useProvideAuth = () => {
         dispatch(signOut())
         setAuthUser(false)
         setLocalStorage("user", true, null)
-        toast.success(<IntlMessages id="noti.signout.success"/>)
+        toast.success(<IntlMessages id="noti.signout.success" />)
       })
       .catch(function (error) {
-        toast.error(<IntlMessages id="noti.signout.error"/>)
+        toast.error(<IntlMessages id="noti.signout.error" />)
       });
   };
 
@@ -168,11 +166,11 @@ export const useProvideAuth = () => {
 
 
   const changeInfo = (user, callbackFun) => {
-   
+
   };
 
   const getAuthUser = () => {
-    
+
   };
 
   // Subscribe to user on mount

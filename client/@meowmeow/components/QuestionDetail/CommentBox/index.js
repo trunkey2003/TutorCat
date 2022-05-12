@@ -33,8 +33,8 @@ class CommentBox extends React.Component {
             .then(({ data }) => {
                 if (data.statusCode == "200") {
                     toast.dismiss()
+                    this.setState({editorHtml: '\n'})
                     this.props.updateComment()
-                    this.forceUpdate();
                 }
                 else
                     toast.error(data.message)
@@ -104,6 +104,7 @@ class CommentBox extends React.Component {
                         ref={el => {
                             this.quill = el;
                         }}
+                        value={this.state.editorHtml}
                         onChange={this.handleChange}
                         placeholder={this.props.placeholder}
                         modules={{
