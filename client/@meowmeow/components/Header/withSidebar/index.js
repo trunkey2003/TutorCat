@@ -20,7 +20,10 @@ export default function Header({ children }) {
                     </div>
                     <div className="flex-1 p-1">
                         <a href="/">
-                            <a className="text-2xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary px-1"><IntlMessages id="config.projectName" /></a>
+                            <div className="flex flex-nowrap gap-2">
+                                <img className="h-9" src="/image/tutorcatlogo.png" alt="Tutor Cat logo" />
+                                <a className="hidden md:block text-2xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary px-1"><IntlMessages id="config.projectName" /></a>
+                            </div>
                         </a>
                         <div className="flex hidden md:block lg:block xl:block justify-start ml-5">
                             <MenuSecond />
