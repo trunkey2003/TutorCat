@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import IntlMessages from '../../../utils/IntlMessages'
 import {Axios} from '../../../modules/apiService/config'
 
-const Vote = ({ questionId, voteIndex, question }) => {
+const Vote = ({ questionId, voteIndex, question, id }) => {
     // console.log(questionId)
     const [vote, setVote] = useState(voteIndex);
     const { authUser } = useAuth();
