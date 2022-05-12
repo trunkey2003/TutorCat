@@ -9,7 +9,7 @@ const TagsOverview = () => {
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
                 {categories.map((tag) => (
                     <>
-                        <a href={`/tags/${tag}`}>
+                        <a href={`/tags/${encodeURIComponent(tag)}`}>
                             <div className="p-2 ">
                                 <Card
                                     title={<IntlMessages id={"tags." + tag + ".title"} />}

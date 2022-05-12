@@ -19,9 +19,7 @@ const tagsDetailPage = ({ tQues, tName }) => {
                         </Head>
                     </>
                     :
-                    <Head>
-                        <title><IntlMessages id="config.projectName" /> - <IntlMessages id="config.error.questionNotFound" /></title>
-                    </Head>}
+                        <Heading title1="config.projectName" title2="config.error.questionNotFound" description="landingpage.slogan"/>}
 
                 {(tQues === undefined || tQues === null) ? <Error statusCode={404} /> : <Forum><TagsDetail data={tQues} name={tName} /></Forum>}
 
