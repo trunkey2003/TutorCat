@@ -23,7 +23,7 @@ export default function Header({ children }) {
                     <div className="flex-1 p-1">
                         <a href="/">
                             <div className="flex flex-nowrap gap-2">
-                                <img className="hidden md:block h-9" src="/image/tutorcatlogo.png" alt="Tutor Cat logo" />
+                                <img className="hidden md:block h-8  ml-6" src="/image/tutorcatlogo.png" alt="Tutor Cat logo" />
                                 <a className="text-xl font-bold leading-relaxed inline-block whitespace-nowrap uppercase text-primary px-1"><IntlMessages id="config.projectName" /></a>
                             </div>
                         </a>
