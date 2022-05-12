@@ -13,6 +13,7 @@ const checkBrowser = () => {
   const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
   let browser = (inapp.browser)
   if (browser != "chrome")
+    toast.dismiss();
    toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`)
 }
 
