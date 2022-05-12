@@ -113,7 +113,7 @@ class CommentBox extends React.Component {
                                     [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }],
                                     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
                                     [{ list: 'ordered' }, { list: 'bullet' }],
-                                    ['link', 'video'],
+                                    
                                     ['link', 'image', 'video'],
                                     ['clean'],
                                     ['code-block']

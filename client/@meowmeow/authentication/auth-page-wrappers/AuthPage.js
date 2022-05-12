@@ -10,7 +10,7 @@ const AuthPage = ({ children }) => {
 
   useEffect(() => {
     if (!loadingAuthUser && authUser) {
-      router.push('/questions').then((r) => r);
+      router.push('/').then((r) => r);
     }
 
     return () => setError('');
