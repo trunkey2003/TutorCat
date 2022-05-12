@@ -207,7 +207,7 @@ module.exports = {
     },
     upVoteReply: async (userID, replyID) => {
         try {
-            let reply = Reply.findById(replyID);
+            let reply = await Reply.findById(replyID);
             let userUpVote = reply.userUpVote.filter((item) => {
                 return item.userID.toString() === userID.toString();
             });
