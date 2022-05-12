@@ -51,7 +51,7 @@ const Share = ({questionId}) => {
     const copied = () => {
         toast.success(<IntlMessages id="noti.copied" />)
     }
-    let url = window.location.protocol + "//" + window.location.host +"/quesions/" + questionId;
+    let url = window.location.protocol + "//" + window.location.host +"/questions/" + questionId;
     return (
         <CopyToClipboard text={url}
           onCopy={() => copied()}>

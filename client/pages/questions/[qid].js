@@ -23,7 +23,7 @@ const questionDetailPage = ({ qDetail, qReply }) => {
                 </>
                 :
                 <></>}
-                {(qDetail === undefined || qDetail === null) ? <Error statusCode={404} /> : <Forum><QuestionDetail data={qDetail} answer={qReply}/></Forum>}
+                {(qDetail === undefined || qDetail === null) ? <Error statusCode="404" /> : <Forum><QuestionDetail data={qDetail} answer={qReply}/></Forum>}
         </>
     )
 }
