@@ -23,7 +23,6 @@ const Comment = ({ qDetail, qAnswer }) => {
     }
     return (
         <>
-            {authUser ? <CommentBox questionId={qDetail._id} updateComment={() => update(qDetail)} /> : <></>}
             <div className="container a-content-container">
                 <h3 className="text-xl mb-5">{comments.length} {(comments.length > 1) ? <IntlMessages id="questions.answers" /> : <IntlMessages id="questions.answer" />}</h3>
                 {comments.map((comment) => (
@@ -34,6 +33,7 @@ const Comment = ({ qDetail, qAnswer }) => {
                 )
                 )}
             </div>
+            {authUser ? <CommentBox questionId={qDetail._id} updateComment={() => update(qDetail)} /> : <></>}
         </>
     )
 }

@@ -78,7 +78,7 @@ const Detail = ({ detail, voteIndex, time, id, questionId, user, question }) => 
         <>
             <div className="flex flex-row">
                 <div className="flex-none w-10 mr-3">
-                    <Vote voteIndex={voteIndex} questionId={id} question={question}/>
+                    <Vote voteIndex={voteIndex} questionId={id} question={question} id={id}/>
                 </div>
                 <div className="grow">
                     <div className="grid grid-cols-1 mb-5">

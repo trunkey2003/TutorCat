@@ -25,7 +25,7 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     )
             } else {
                 let res = await Axios
-                    .post(`/question/${questionId}/reply/up-vote`)
+                    .post(`/question/reply/${id}/up-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
                             setVote(data.data)
@@ -57,7 +57,7 @@ const Vote = ({ questionId, voteIndex, question }) => {
                     )
             } else {
                 let res = await Axios
-                    .post(`/question/${questionId}/reply/down-vote`)
+                    .post(`/question/reply/${id}/down-vote`)
                     .then(({data}) => {
                         if (data.statusCode == 200)
                             setVote(data.data)
