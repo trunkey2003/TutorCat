@@ -55,7 +55,7 @@ const tagsDetailPage = ({ tQues, tName }) => {
 
 export async function getServerSideProps({ params }) {
     let tQues = await Axios
-        .get(`/question/catalogue/${uri}`)
+        .get(`/question/catalogue/${params.tid}`)
         .then(res => {
             let data = res.data.data
             return data
