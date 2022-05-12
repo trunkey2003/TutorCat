@@ -6,6 +6,15 @@ import Modal from "@mui/material/Modal";
 import Loading from "../../components/Loading";
 import AuthLayout from "../../@meowmeow/components/Layout/TrunkeyAuth";
 import { Heading } from '../../@meowmeow/modules'
+import InApp from 'detect-inapp';
+
+const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
+
+const checkBrowser = () => {
+  let browser = inapp.browser
+  if (browser != "chrome")
+   alert(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`)
+}
 
 const style = {
   position: "absolute",
@@ -59,6 +68,7 @@ export default function Index() {
         setRooms(data);
       });
     });
+    checkBrowser()
   }, []);
 
   const handleSubmitTitle = () => {
