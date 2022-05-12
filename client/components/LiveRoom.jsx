@@ -737,9 +737,9 @@ export default function LiveRoom({ roomID }) {
   const MyCallScreenState = () => {
     if (myCallScreenOff == true)
       return (
-        <div className="hidden lg:flex z-10 fixed lg:absolute bottom-[20vh] left-0 lg:top-0 lg:left-0 w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
+        <div className="hidden md:flex z-10 fixed md:absolute bottom-[20vh] left-0 md:top-0 md:left-0 w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
           Your camera is off
-          <div className="fixed lg:absolute bottom-[20vh] left-0 lg:top-0 lg:left-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-black opacity-50">
+          <div className="fixed md:absolute bottom-[20vh] left-0 md:top-0 md:left-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-black opacity-50">
             {shareAudio ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -762,7 +762,7 @@ export default function LiveRoom({ roomID }) {
       );
     else {
       return (
-        <div className="hidden lg:flex fixed lg:absolute bottom-[20vh] left-0 lg:top-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
+        <div className="hidden md:flex fixed md:absolute bottom-[20vh] left-0 md:top-0 h-6 w-6 m-1 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
           {shareAudio ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -788,7 +788,7 @@ export default function LiveRoom({ roomID }) {
   const RemoteCallScreenState = () => {
     if (remoteCallScreenOff == true)
       return (
-        <div className="hidden lg:flex fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] bg-black object-cover border-2 border-sky-200 z-10 text-white flex justify-center items-center text-2xl">
+        <div className="hidden md:flex fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] bg-black object-cover border-2 border-sky-200 z-10 text-white flex justify-center items-center text-2xl">
           Remote camera is off
           <div className="absolute top-0 left-0 h-6 w-6 m-2 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
             {remoteShareAudio ? (
@@ -813,7 +813,7 @@ export default function LiveRoom({ roomID }) {
       );
     if (remoteCallScreenOff == null && !created)
       return (
-        <div className="hidden lg:flex fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] animate-pulse bg-gray-700 text-blue-300 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
+        <div className="hidden md:flex fixed left-[10vw] top-[2vw] w-[80vw] h-[45vw] animate-pulse bg-gray-700 text-blue-300 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
           Waiting another user to join...
         </div>
       );
@@ -889,7 +889,7 @@ export default function LiveRoom({ roomID }) {
 
       <div
         onClick={handleClassChatBox}
-        className={`hidden lg:flex fixed bottom-[330px] justify-center items-center w-[40px] h-[60px] bg-sky-900 z-[1001] rounded-r-xl ${classChatToogle} hover:cursor-pointer hover:opacity-80`}
+        className={`hidden md:flex fixed bottom-[330px] justify-center items-center w-[40px] h-[60px] bg-sky-900 z-[1001] rounded-r-xl ${classChatToogle} hover:cursor-pointer hover:opacity-80`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -907,7 +907,7 @@ export default function LiveRoom({ roomID }) {
 
       {
         <div
-          className={`hidden lg:block fixed left-0 bottom-10 h-[350px] bg-gray-900 bg-opacity-70 z-[1000] ${classChatBox} overflow-hidden`}
+          className={`hidden md:block fixed left-0 bottom-10 h-[350px] bg-gray-900 bg-opacity-70 z-[1000] ${classChatBox} overflow-hidden`}
         >
           {
             <div className="p-4 max-h-[310px] overflow-x-auto">
@@ -962,7 +962,7 @@ export default function LiveRoom({ roomID }) {
       <div className="bg-black w-full min-h-screen">
         <video
           ref={remoteVideo}
-          className="fixed top-[10vh] left-[calc(50%-160px)] lg:left-[10vw] lg:top-[2vw] w-[320px] lg:w-[80vw] h-[180px] lg:h-[45vw] bg-gray-300 object-cover border-2 border-sky-200"
+          className="fixed top-[10vh] md:left-[10vw] md:top-[2vw] w-[100vw] md:w-[80vw] h-[56.25vw] md:h-[45vw] bg-gray-300 object-cover border-2 border-sky-200"
         ></video>
         <RemoteCallScreenState />
         <Draggable
@@ -973,15 +973,15 @@ export default function LiveRoom({ roomID }) {
             bottom: 20,
           }}
         >
-          <div className="z-30 right-[calc(50%-160px)] absolute bottom-[20vh] lg:bottom-[15px] lg:right-[15px] cursor-move">
+          <div className="z-30 absolute bottom-[20vh] md:bottom-[15px] md:right-[15px] cursor-move">
             <video
               ref={myVideo}
-              className="z-30 w-[320px] h-[180px] border-2 border-sky-200 bg-blue-100 object-cover"
+              className="z-30 w-[100vw] h-[56.25vw] md:w-[320px] md:h-[180px] border-2 border-sky-200 bg-blue-100 object-cover"
             ></video>
             <MyCallScreenState />
           </div>
         </Draggable>
-        <div className="fixed z-40 flex items-center justify-center w-full lg:w-[33.33333vw] lg:left-[33.333333vw] bottom-[20px]">
+        <div className="fixed z-40 flex items-center justify-center w-full md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
           {sharingScreen ? <StopShareScreenButton /> : <StartShareScreenButton />}
           {shareAudio ? <MuteButton /> : <UnmuteButton />}
           {shareCam ? <StopShareWebcamButton /> : <StartShareWebcamButton />}
