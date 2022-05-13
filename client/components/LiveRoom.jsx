@@ -225,6 +225,7 @@ export default function LiveRoom({ roomID }) {
 
   const handleEndCall = () => {
     setLoading(true);
+    remoteVideo.current.muted = true;
     window.location.href = window.location.origin + "/live";
   };
 
@@ -985,7 +986,7 @@ export default function LiveRoom({ roomID }) {
             <MyCallScreenState />
           </div>
         </Draggable>
-        <div className="fixed z-40 flex items-center justify-center w-full md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
+        <div className="fixed z-40 flex items-center justify-center w-[100vw] md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
           {sharingScreen ? <StopShareScreenButton /> : <StartShareScreenButton />}
           {shareAudio ? <MuteButton /> : <UnmuteButton />}
           {shareCam ? <StopShareWebcamButton /> : <StartShareWebcamButton />}
