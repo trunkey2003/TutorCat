@@ -15,26 +15,26 @@ const checkBrowser = () => {
   let browserName;
   if (userAgent.match(/chrome|chromium|crios/i)) {
     browserName = "Chrome";
-  } else if (userAgent.match(/firefox|fxios/i)) {
+  }
+  if (userAgent.match(/firefox|fxios/i)) {
     browserName = "Firefox";
-  } else if (userAgent.match(/safari/i)) {
+  }
+  if (userAgent.match(/safari/i)) {
     browserName = "Safari";
-  } else if (userAgent.match(/opr\//i)) {
+  }
+  if (userAgent.match(/opr\//i)) {
     browserName = "Opera";
-  } else if (userAgent.match(/edg/i)) {
+  } 
+  if (userAgent.match(/edg/i)) {
     browserName = "Edge";
-  } else if (userAgent.match(/FBAN|FBAV/i)) {
+  } 
+  if (userAgent.match(/FBAN|FBAV/i)) {
     browserName = "Facebook/Messenger";
-  } else {
+  } 
+  if (browserName === null) {
     browserName = "Other (Tiktok, Instagram,...)";
   }
   let browser = browserName
-  toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`, {
-    style: {
-      background: '#FFCC00',
-      color: '#fff',
-    }
-  })
   if ((browser != "Chrome") && (browser != "Edge") && (browser != "Opera")) {
     toast.dismiss();
     toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`, {
