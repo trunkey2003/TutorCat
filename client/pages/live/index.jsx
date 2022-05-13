@@ -42,7 +42,6 @@ const checkBrowser = () => {
         background: '#FFCC00',
         color: '#fff',
       },
-      duration: -1
     })
   }
 }
