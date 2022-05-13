@@ -5,7 +5,7 @@ export default function Loading() {
     <div className="fixed top-0 left-0 flex items-center justify-center min-h-screen w-full bg-black bg-opacity-40 z-[1000000]">
       <div className="fixed w-32 h-32 animate-spin rounded-full bg-gradient-to-r from-sky-300 via-blue-600 to-sky-700">
       </div>
-      {/* <img src='/image/logo.gif' className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-gray-200 rounded-full border-2 border-sky-800"></img> */}
+      <img src='/image/logo.gif' className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-gray-200 rounded-full border-2 border-sky-800"></img>
     </div>
   );
 }
