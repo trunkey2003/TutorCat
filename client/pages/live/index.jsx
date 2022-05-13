@@ -41,7 +41,8 @@ const checkBrowser = () => {
       style: {
         background: '#FFCC00',
         color: '#fff',
-      }
+      },
+      duration: -1
     })
   }
 }
@@ -63,7 +64,7 @@ const socket = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/live`);
 export default function Index() {
   const [error, setError] = useState("");
   const [sectionModal, setSectionModal] = useState(1);
-  const [showModalCreateRoom, setShowModalCreateRoom] = useState(false);
+  const [showModalCreateRoom, setShowModalCreateRoom] = u7seState(false);
   const [userName, setUserName] = useState("");
   const [userJob, setUserJob] = useState("");
   const [language, setLanguage] = useState("");
