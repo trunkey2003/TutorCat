@@ -41,6 +41,9 @@ const checkBrowser = () => {
       style: {
         background: '#FFCC00',
         color: '#fff',
+      },
+      blank: {
+        duration: -1
       }
     })
   }
@@ -88,11 +91,13 @@ export default function Index() {
         //dev
         if (roomID) {
           setLoading(false)
+          checkBrowser();
         };
       });
     socket.current.on("myID", (myID) => {
       setRoomID(myID);
       setLoading(false);
+      checkBrowser();
     });
     socket.current.on("update room", () => {
       console.log("update room");
