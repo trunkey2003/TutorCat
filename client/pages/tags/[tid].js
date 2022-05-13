@@ -14,7 +14,7 @@ const tagsDetailPage = ({ tQues, tName }) => {
                 {(tQues !== undefined && tQues !== null) ?
                     <>
                         <Head>
-                            <title>Tutor Cat - {tName !== undefined ? tName : ""}</title>
+                            <title>TutorCat - {tName !== undefined ? tName : ""}</title>
                             <meta name="description" content={tName !== undefined ? tName.category : ""}></meta>
                         </Head>
                     </>

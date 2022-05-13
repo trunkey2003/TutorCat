@@ -1,4 +1,4 @@
-# Tutor Cat Template
+# TutorCat Template
 ##### Using for WebDev Adventure 2022. Based on Next.js and Tailwind, DaisyUI
 From sheroanh with Love ❤️
 
