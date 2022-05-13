@@ -5,10 +5,6 @@ import { io } from "socket.io-client";
 import Loading from "./Loading";
 import { Axios } from "../config/axios";
 import Error from "./Error";
-// import ErrorPermissionMicroHost from './ErrorPermissionMicroHost';
-// import ErrorPermissionCameraHost from './ErrorPermissionCameraHost';
-// import ErrorPermissionMicroJoiner from './ErrorPermissionMicroJoiner';
-// import ErrorPermissionCameraJoiner from "./ErrorPermissionCameraJoiner";
 import ChatBreak from "./chat/ChatBreak";
 import RemoteChat from "./chat/RemoteChat";
 import MeChat from "./chat/MeChat";
@@ -506,6 +502,10 @@ export default function LiveRoom({ roomID }) {
           socket.emit("create room", roomID);
         },
         (err) => {
+          //////////////////////////fix tam thoi//////////////////////////
+          window.location.href = window.location.origin + '/ub-error';
+          return;
+          ////////////////////////////////////////////////////////////////
           setShareAudio(false);
           handleMyCallScreen(null);
           peer.on("disconnected", () => {
@@ -573,6 +573,10 @@ export default function LiveRoom({ roomID }) {
           // myMediaConnection.current = call;
         },
         (err) => {
+          //////////////////////////fix tam thoi//////////////////////////
+          window.location.href = window.location.origin + '/ub-error';
+          return;
+          ////////////////////////////////////////////////////////////////
           setRemoteShareAudio(false);
           handleMyCallScreen(null);
           socket.emit("join room", roomID);
@@ -822,7 +826,7 @@ export default function LiveRoom({ roomID }) {
     }
     if (remoteCallScreenOff == false)
       return (
-        <div className="fixed left-[10vw] top-[2vw]">
+        <div className="hidden md:block fixed left-[10vw] top-[2vw]">
           <div className="absolute top-0 left-0 h-6 w-6 m-2 flex justify-center items-center rounded-full bg-gray-700 opacity-50">
             {remoteShareAudio ? (
               <svg
