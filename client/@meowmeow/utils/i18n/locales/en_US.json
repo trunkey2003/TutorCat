@@ -41,7 +41,7 @@
   "signup.signup": "Sign up",
   "signup.btnSignup": "Sign up",
 
-  "sidebar.explorer": "Explorer",
+  "sidebar.explorer": "Explore",
   "sidebar.questions": "Questions",
   "sidebar.tags": "Tags",
   "sidebar.public": "Public",
@@ -62,7 +62,7 @@
   "navmenu.profile.setting": "Setting",
   "navmenu.profile.signout": "Sign out",
 
-  "explorer.name": "Explorer",
+  "explorer.name": "Explore",
 
   "questions.new": "New question",
   "questions.describeProblem": "Describe your problem below: ",
