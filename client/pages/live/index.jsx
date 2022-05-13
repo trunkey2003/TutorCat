@@ -13,14 +13,14 @@ const checkBrowser = () => {
   const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
   const userAgent = inapp.ua
   let browserName;
-  if (userAgent.match(/chrome|chromium|crios/i)) {
-    browserName = "Chrome";
-  }
   if (userAgent.match(/firefox|fxios/i)) {
     browserName = "Firefox";
   }
   if (userAgent.match(/safari/i)) {
     browserName = "Safari";
+  }
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    browserName = "Chrome";
   }
   if (userAgent.match(/opr\//i)) {
     browserName = "Opera";
