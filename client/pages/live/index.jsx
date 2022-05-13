@@ -11,9 +11,25 @@ import InApp from 'detect-inapp';
 
 const checkBrowser = () => {
   const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
-  console.log(inapp.ua)
-  let browser = (inapp.browser)
-  if (browser != "chrome")
+  const userAgent = inapp.ua
+  let browserName;
+  if(userAgent.match(/chrome|chromium|crios/i)){
+    browserName = "Chrome";
+  }else if(userAgent.match(/firefox|fxios/i)){
+    browserName = "Firefox";
+  }  else if(userAgent.match(/safari/i)){
+    browserName = "Safari";
+  }else if(userAgent.match(/opr\//i)){
+    browserName = "Opera";
+  } else if(userAgent.match(/edg/i)){
+    browserName = "Edge";
+  }else if(userAgent.match(/FBAN|FBAV/i)){
+    browserName = "Facebook/Messenger";
+  }else{
+    browserName="Other (Tiktok, Instagram,...)";
+  }
+  let browser = browserName
+  if ((browser != "Chrome") && (browser != "Edge") && (browser != "Opera")) 
   {
     toast.dismiss();
     toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`)
