@@ -18,7 +18,6 @@ const checkBrowser = () => {
     toast.dismiss();
     toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`)
   }
-    
 }
 
 const style = {
@@ -49,7 +48,7 @@ export default function Index() {
   const [rooms, setRooms] = useState([]);
 
   const socket = useRef();
-  checkBrowser()
+  
   useEffect(() => {
     setLoading(true);
     socket.current = io(`${process.env.NEXT_PUBLIC_SERVER_URL}/live`);
@@ -61,11 +60,15 @@ export default function Index() {
       .catch(() => {})
       .finally(() => {
         //dev
-        if (roomID) setLoading(false);
+        if (roomID) {
+          setLoading(false)
+          checkBrowser()
+        };
       });
     socket.current.on("myID", (myID) => {
       setRoomID(myID);
       setLoading(false);
+      checkBrowser()
     });
     socket.current.on("update room", () => {
       console.log("update room");
