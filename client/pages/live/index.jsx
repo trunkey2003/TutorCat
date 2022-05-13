@@ -29,6 +29,12 @@ const checkBrowser = () => {
     browserName = "Other (Tiktok, Instagram,...)";
   }
   let browser = browserName
+  toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`, {
+    style: {
+      background: '#FFCC00',
+      color: '#fff',
+    }
+  })
   if ((browser != "Chrome") && (browser != "Edge") && (browser != "Opera")) {
     toast.dismiss();
     toast(`You are accessing with ${browser} browser. You should access with Chrome to use full functions`, {
@@ -757,8 +763,8 @@ export default function Index() {
                   <div
                     onClick={() => handleAddProgrammingLanguage("C/C++")}
                     className={`relative mb-4 w-24 h-24 bg-sky-100 mx-2 border-2 ${programmingLanguages.includes("C/C++")
-                        ? "border-4 border-blue-900"
-                        : "border-sky-100"
+                      ? "border-4 border-blue-900"
+                      : "border-sky-100"
                       } hover:border-blue-900 flex items-center justify-center hover:cursor-pointer rounded-lg`}
                   >
                     <div>
@@ -791,8 +797,8 @@ export default function Index() {
                   <div
                     onClick={() => handleAddProgrammingLanguage("Javascript")}
                     className={`relative mb-4 w-24 h-24 bg-sky-100 mx-2 border-2 ${programmingLanguages.includes("Javascript")
-                        ? "border-4 border-blue-900"
-                        : "border-sky-100"
+                      ? "border-4 border-blue-900"
+                      : "border-sky-100"
                       } hover:border-blue-900 flex items-center justify-center hover:cursor-pointer rounded-lg`}
                   >
                     <div className="text-sm font-medium mb-5">Javascript</div>
@@ -807,8 +813,8 @@ export default function Index() {
                   <div
                     onClick={() => handleAddProgrammingLanguage("Python")}
                     className={`relative mb-4 w-24 h-24 bg-sky-100 mx-2 border-2 ${programmingLanguages.includes("Python")
-                        ? "border-4 border-blue-900"
-                        : "border-sky-100"
+                      ? "border-4 border-blue-900"
+                      : "border-sky-100"
                       } hover:border-blue-900 flex items-center justify-center hover:cursor-pointer rounded-lg`}
                   >
                     <div className="text-sm font-medium mb-5">Python</div>
@@ -823,8 +829,8 @@ export default function Index() {
                   <div
                     onClick={() => handleAddProgrammingLanguage("Java")}
                     className={`relative mb-4 w-24 h-24 bg-sky-100 mx-2 border-2 ${programmingLanguages.includes("Java")
-                        ? "border-4 border-blue-900"
-                        : "border-sky-100"
+                      ? "border-4 border-blue-900"
+                      : "border-sky-100"
                       } hover:border-blue-900 flex items-center justify-center hover:cursor-pointer rounded-lg`}
                   >
                     <div className="text-sm font-medium mb-5">Java</div>
@@ -841,8 +847,8 @@ export default function Index() {
                   <div
                     onClick={() => handleAddProgrammingLanguage("C#")}
                     className={`relative mb-4 w-24 h-24 bg-sky-100 mx-2 border-2 ${programmingLanguages.includes("C#")
-                        ? "border-4 border-blue-900"
-                        : "border-sky-100"
+                      ? "border-4 border-blue-900"
+                      : "border-sky-100"
                       } hover:border-blue-900 flex items-center justify-center hover:cursor-pointer rounded-lg`}
                   >
                     <div className="text-sm font-medium mb-5">C#</div>
@@ -860,8 +866,8 @@ export default function Index() {
                   <div
                     onClick={() => handleAddProgrammingLanguage("Other")}
                     className={`relative mb-4 w-24 h-24 bg-sky-100 mx-2 border-2 ${programmingLanguages.includes("Other")
-                        ? "border-4 border-blue-900"
-                        : "border-sky-100"
+                      ? "border-4 border-blue-900"
+                      : "border-sky-100"
                       } hover:border-blue-900 flex items-center justify-center hover:cursor-pointer rounded-lg`}
                   >
                     <div className="text-sm font-medium mb-5">Other</div>
