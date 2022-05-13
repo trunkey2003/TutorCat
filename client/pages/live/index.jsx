@@ -11,7 +11,7 @@ import InApp from 'detect-inapp';
 
 const checkBrowser = () => {
   const inapp = new InApp(navigator.userAgent || navigator.vendor || window.opera);
-  console.log(inapp)
+  console.log(inapp.ua)
   let browser = (inapp.browser)
   if (browser != "chrome")
   {
