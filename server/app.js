@@ -30,15 +30,27 @@ app.use(express.urlencoded({ extended: true }));
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
-const DB = process.env.DATABASE.replace('<USERNAME>', process.env.DATABASE_USERNAME)
-    .replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
-    .replace('<DB_NAME>', process.env.DATABASE_NAME);
-mongoose
-    .connect(DB, {
-        useUnifiedTopology: true,
+console.log(process.env);
+
+if (process.env.NODE_ENV === 'docker'){
+    mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
     })
-    .then(() => console.log('DB connection successful!'));
+    .then(() => console.log('Docker DB connection successful!'))
+    .catch((err) => console.log(err));
+} else {
+    const DB = process.env.DATABASE.replace('<USERNAME>', process.env.DATABASE_USERNAME)
+        .replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
+        .replace('<DB_NAME>', process.env.DATABASE_NAME);
+    mongoose
+        .connect(DB, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+        })
+        .then(() => console.log('DB connection successful!'))
+        .catch((err) => console.log(err));
+}
 
 app.use('/api', api);
 
