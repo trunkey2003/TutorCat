@@ -11,6 +11,8 @@ Dự án tham gia cuộc thi WebDev Adventure 2022 - UIT do Meowmeow team thực
 Team sử dụng NodeJS, NextJS, PeerJS & SocketIO và một số thư viện khác
 
 ## Cài đặt
+### Sử dụng Docker 
+Ở thư mục root chứa 2 folder client & server, mở terminal, chạy lệnh ``docker-compose up``
 ### Đối với Front-end
 Hệ thống yêu cầu máy chủ cần có [Node.js](https://nodejs.org/) v16+ để khởi tạo.
 Các bước tiến hành cài đặt và khởi chạy được hướng dẫn với máy đã cài đặt sẵn gói npm hoặc yarn
