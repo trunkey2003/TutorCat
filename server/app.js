@@ -30,8 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
-console.log(process.env);
-
 if (process.env.NODE_ENV === 'docker'){
     mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
